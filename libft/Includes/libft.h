@@ -50,6 +50,13 @@ char	*ft_strdup(const char *str);
 /* Concatenates two strings allocating enough space first */
 char	*ft_strjoin(char const *s1, char const *s2);
 
+size_t	ft_strlen(const char *str);
 
+/* Compares two strings untill reaching the n-th character */
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
+
+/* Tries to find a substring (to_find) in a second string (str)
+ * before the len-th char is reached */
+char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 
 #endif
