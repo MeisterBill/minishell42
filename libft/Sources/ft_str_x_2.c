@@ -43,23 +43,52 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 	return (NULL);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *str, char const *to_trim)
 {
 	int len;
 	int i;
 	int j;
 
-	if (!s1)
+	if (!str)
 		return (0);
-	len = ft_strlen(s1);
+	len = ft_strlen(str);
 	i = 0;
 	j = len - 1;
-	while (i <= len / 2 && ft_strchr(set, s1[i]) != NULL)
+	while (i <= len / 2 && ft_strchr(to_trim, str[i]) != NULL)
 		i++;
-	while (j >= len / 2 && ft_strchr(set, s1[j]) != NULL)
+	while (j >= len / 2 && ft_strchr(to_trim, str[j]) != NULL)
 		j--;
 	if (i > j)
 		return (ft_strdup(""));
 	len = j - i;
-	return (ft_substr(s1, i, len + 1));
+	return (ft_substr(str, i, len + 1));
+}
+
+char *ft_substr(char const *str, unsigned int start, size_t len)
+{
+	size_t str_len;
+	char *res;
+	size_t i;
+
+	if (!str)
+		return (NULL);
+	str_len = ft_strlen(str);
+	i = 0;
+	if (len > str_len)
+		len = str_len;
+	if (start >= str_len)
+	{
+		res = (char *)malloc(1);
+		if (res == NULL)
+			return (NULL);
+		res[0] = '\0';
+		return (res);
+	}
+	res = (char *)malloc(len + 1);
+	if (res == NULL)
+		return (NULL);
+	while (i++ < start)
+		str++;
+	ft_strlcpy(res, str, len + 1);
+	return (res);
 }
