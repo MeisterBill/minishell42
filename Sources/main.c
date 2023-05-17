@@ -9,36 +9,33 @@
 /*   Updated: 2023/04/12 21:34:46 by artvan-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "../Includes/minishell.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+extern int g_status;
 
-int main() {
-    char *input;
-    size_t input_size = 0;
-    ssize_t input_length;
-    
-    while (1) {
-        // Display prompt
-        printf("$ ");
-        
-        // Read user input
-        input_length = getline(&input, &input_size, stdin);
-        
-        if (input_length == -1) {
-            // End of input reached (e.g. ctrl-D was pressed)
-            break;
-        }
-        
-        // Remove newline character from input
-        input[strcspn(input, "\n")] = '\0';
-        
-        // TODO: Parse and execute command
-    }
-    
-    // Free memory
-    free(input);
-    
-    return 0;
+static t_prompt init_vars(t_prompt prompt, char *str, char **argv)
+{
+	return (prompt);
+}
+
+static t_prompt init_prompt(char **argv, char **envp)
+{
+	t_prompt	prompt;
+	char			*str;
+
+	str = NULL;
+	prompt.cmds = NULL;
+	prompt.envp = ft_dup_matrix(envp);
+	g_status = 0;
+	ft_getchildpid(&prompt);
+	//prompt = init_vars(prompt, str, argv);
+	return (prompt);
+}
+
+int main(int argc, char **argv, char **envp)
+{
+	t_prompt prompt;
+
+	prompt = init_prompt(argv, envp);
+	return (0);
 }
