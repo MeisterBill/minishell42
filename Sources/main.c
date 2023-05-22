@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "../Includes/minishell.h"
 
-extern int g_status;
+extern int exit_code;
 
 static t_prompt init_vars(t_prompt prompt, char *str, char **argv)
 {
@@ -26,7 +26,7 @@ static t_prompt init_prompt(char **argv, char **envp)
 	str = NULL;
 	prompt.cmds = NULL;
 	prompt.envp = ft_dup_matrix(envp);
-	g_status = 0;
+	exit_code = 0;
 	ft_getchildpid(&prompt);
 	//prompt = init_vars(prompt, str, argv);
 	return (prompt);
