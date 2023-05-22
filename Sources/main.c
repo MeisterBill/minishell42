@@ -13,6 +13,26 @@
 
 extern int exit_code;
 
+static void	ft_getchildpid(t_prompt *prompt)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid < 0)
+	{
+		//error managment function
+		ft_free_matrix(&prompt->envp);
+		exit(1);
+	}
+	if (!pid)
+	{
+		ft_free_matrix(&prompt->envp);
+		exit(1);
+	}
+	waitpid(pid, NULL, 0);
+	prompt->pid = pid - 1;
+}
+
 static t_prompt init_vars(t_prompt prompt, char *str, char **argv)
 {
 	return (prompt);
