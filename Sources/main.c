@@ -20,7 +20,7 @@ static void	ft_getchildpid(t_prompt *prompt)
 	pid = fork();
 	if (pid < 0)
 	{
-		//error managment function
+		ft_print_errors(FORKERR, NULL, 1);
 		ft_free_matrix(&prompt->envp);
 		exit(1);
 	}
@@ -35,6 +35,8 @@ static void	ft_getchildpid(t_prompt *prompt)
 
 static t_prompt init_vars(t_prompt prompt, char *str, char **argv)
 {
+
+	
 	return (prompt);
 }
 

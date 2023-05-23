@@ -49,9 +49,9 @@ typedef struct s_data
 enum e_mini_error
 {
 	QUOTE = 1,
-	NDIR = 2,
-	NPERM = 3,
-	NCMD = 6,
+	NODIR = 2,
+	NOPERM = 3,
+	NOCMD = 6,
 	DUPERR = 7,
 	FORKERR = 8,
 	PIPERR = 9,
@@ -60,5 +60,8 @@ enum e_mini_error
 	IS_DIR = 12,
 	NOT_DIR = 13
 };
+
+
+void	*ft_print_errors(int err_type, char *str, int exitcode);
 
 #endif
