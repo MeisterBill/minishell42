@@ -92,3 +92,15 @@ char *ft_substr(char const *str, unsigned int start, size_t len)
 	ft_strlcpy(res, str, len + 1);
 	return (res);
 }
+
+size_t ft_strlen(const char *str)
+{
+	int i;
+
+	i = 0;
+	if (!str)
+		return (i);
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}

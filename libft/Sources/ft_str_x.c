@@ -1,19 +1,39 @@
 #include "../Includes/libft.h"
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_strchr(const char *str, int n)
 {
-	unsigned char	c_unsigned;
+	unsigned char	n_unsigned;
 
-	c_unsigned = (unsigned char)c;
-	if (c_unsigned == '\0')
+	n_unsigned = (unsigned char)n;
+	if (n_unsigned == '\0')
 		return ((char *)&str[ft_strlen(str)]);
 	while (*str != '\0')
 	{
-		if (*str == c_unsigned)
+		if (*str == n_unsigned)
 			return ((char *)str);
 		str++;
 	}
 	return (NULL);
+}
+
+int ft_strchr_index(const char *str, int n)
+{
+	unsigned char n_unsigned;
+	int i;
+
+	i = 0;
+	if (!str)
+		return (-1);
+	n_unsigned = (unsigned char)n;
+	while (str[i] != '\0')
+	{
+		if (str[i] == n_unsigned)
+			return (i);
+		i++;
+	}
+	if (n_unsigned == '\0')
+		return (i);
+	return (-1);
 }
 
 char	*ft_strdup(const char *str)
@@ -83,16 +103,4 @@ size_t ft_strlcpy(char *dst, const char *src, size_t size)
 	if (size != 0)
 		dst[i] = '\0';
 	return (size_src);
-}
-
-size_t	ft_strlen(const char *str)
-{
-	int i;
-
-	i = 0;
-	if (!str)
-		return (i);
-	while (str[i] != '\0')
-		i++;
-	return (i);
 }
