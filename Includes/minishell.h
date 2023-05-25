@@ -61,7 +61,10 @@ enum e_mini_error
 	NOT_DIR = 13
 };
 
-
+/* Prints a custom error message to standard error */
 void	*ft_print_errors(int err_type, char *str, int exitcode);
+
+/* Retrieves a string containing the value of an env var */
+char	*ft_getenv(char *var, char **envp, int n);
 
 #endif
