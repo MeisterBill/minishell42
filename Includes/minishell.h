@@ -66,5 +66,7 @@ void	*ft_print_errors(int err_type, char *str, int exitcode);
 
 /* Retrieves a string containing the value of an env var */
 char	*ft_getenv(char *var, char **envp, int n);
+/* Sets a new environment variable or changes the value of an existing one */
+char	**ft_setenv(char *var, char *value, char **envp, int n);
 
 #endif

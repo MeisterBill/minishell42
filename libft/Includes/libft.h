@@ -78,4 +78,14 @@ char		*ft_strtrim(char const *str, char const *to_trim);
 /* Copies the next len characters from the start-th char of str */
 char		*ft_substr(char const *str, unsigned int start, size_t len);
 
+/* MATRIX */
+/* Returns length of a matrix (char **) */
+int			ft_matrixlen(char **matrix);
+/* Appends new row to a matrix */
+char		**ft_extend_matrix(char **ex_matrix, char *to_add);
+/* Frees all allocated memory from a matrix (array of arrays) */
+void		ft_free_matrix(char ***matrix);
+/* Allocates and fully duplicates a matrix (array of arrays) */
+char		**ft_dup_matrix(char **matrix);
+
 #endif

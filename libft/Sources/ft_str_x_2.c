@@ -66,9 +66,9 @@ char	*ft_strtrim(char const *str, char const *to_trim)
 
 char *ft_substr(char const *str, unsigned int start, size_t len)
 {
-	size_t str_len;
-	char *res;
-	size_t i;
+	size_t	str_len;
+	char		*res;
+	size_t	i;
 
 	if (!str)
 		return (NULL);
