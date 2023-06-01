@@ -1,18 +1,18 @@
 #ifndef MINISHELL_H
 
-#define MINISHELL_H
+# define MINISHELL_H
 
-#include "../libft/Includes/libft.h"
-#include <fcntl.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <signal.h>
-#include <sys/wait.h>
-#include <dirent.h>
-#include <sys/ioctl.h>
+# include "../libft/Includes/libft.h"
+# include <fcntl.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <signal.h>
+# include <sys/wait.h>
+# include <dirent.h>
+# include <sys/ioctl.h>
 
-#define READ_END 0
-#define WRITE_END 1
+# define READ_END 0
+# define WRITE_END 1
 
 /* Implementation of linked list */
 typedef struct s_list
@@ -60,6 +60,11 @@ enum e_mini_error
 	IS_DIR = 12,
 	NOT_DIR = 13
 };
+
+/* Colors */
+# define GREEN "\001\033[1;92m\002"
+# define RED "\001\033[1;91m\002"
+# define DEFAULT "\001\033[0;39m\002"
 
 /* Prints a custom error message to standard error */
 void	*ft_print_errors(int err_type, char *str, int exitcode);
