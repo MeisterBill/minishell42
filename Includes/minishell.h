@@ -28,7 +28,7 @@ typedef struct s_vector
 	int	y;
 } t_vector;
 
-/* Data structure useful for prompt stuff + stocking copy of env */
+/* Data structure useful for prompt stuff + env */
 typedef struct s_prompt
 {
 	t_list	*cmds;

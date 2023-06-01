@@ -79,5 +79,6 @@ int main(int argc, char **argv, char **envp)
 	t_prompt prompt;
 
 	prompt = init_prompt(argv, envp);
+	
 	return (0);
 }
