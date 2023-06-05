@@ -2,11 +2,16 @@
 
 # define LIBFT_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
 # include <ctype.h>
+# include <limits.h>
 
 /* ATOI */
 /* Reads a string, and, after ignoring spaces
@@ -14,9 +19,9 @@ with ft_isspace, saves the string into an integer */
 int			ft_atoi(const char *str);
 int			ft_isspace(char c);
 
-/* CALLOC */
-/* Reserves count blocks of size bits of memory */
-void		*ft_calloc(size_t count, size_t size);
+		/* CALLOC */
+		/* Reserves count blocks of size bits of memory */
+		void *ft_calloc(size_t count, size_t size);
 
 /* Writes n zeroes to the string s */
 void		ft_bzero(void *s, size_t n);
@@ -87,5 +92,11 @@ char		**ft_extend_matrix(char **ex_matrix, char *to_add);
 void		ft_free_matrix(char ***matrix);
 /* Allocates and fully duplicates a matrix (array of arrays) */
 char		**ft_dup_matrix(char **matrix);
+
+/* GET_NEXT_LINE */
+char *ft_readfile_and_pushtostash(int fd, char *stash);
+char *ft_checkbackn_and_pushtoline(char *stash);
+char *ft_push_cutstash_to_nextstash(char *stash);
+char *get_next_line(int fd);
 
 #endif

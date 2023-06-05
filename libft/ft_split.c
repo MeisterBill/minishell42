@@ -1,4 +1,4 @@
-#include "../Includes/libft.h"
+#include "libft.h"
 
 static int	ft_count_words(const char *str, char c)
 {

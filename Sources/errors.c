@@ -1,10 +1,11 @@
 #include "../Includes/minishell.h"
 
-extern int exit_code;
+//extern int exit_code;
 
 void *ft_print_errors(int err_type, char *str, int exitcode)
 {
-	exit_code = exitcode;
+	//exit_code = exitcode;
+	exitcode = 0;
 	if (err_type == QUOTE)
 		ft_putstr_fd("minishell: error while looking for matching quote\n", 2);
 	else if (err_type == NODIR)

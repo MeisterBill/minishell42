@@ -1,7 +1,5 @@
 #include "../Includes/minishell.h"
 
-extern int exit_code;
-
 static void update_output(char ***matrix, int fd)
 {
 	char **tmp_matrix;

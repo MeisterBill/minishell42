@@ -1,4 +1,4 @@
-#include "../Includes/libft.h"
+#include "libft.h"
 
 /* Writes n zeroes to the string s */
 void	ft_bzero(void *s, size_t n)

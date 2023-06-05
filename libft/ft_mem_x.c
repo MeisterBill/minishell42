@@ -1,4 +1,4 @@
-#include "../Includes/libft.h"
+#include "libft.h"
 
 /* Assigns a character n times to a part of the memory*/
 void	*ft_memset(void *s, int c, size_t n)
