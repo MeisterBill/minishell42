@@ -69,7 +69,7 @@ char	*ft_getenv(char *var, char **envp, int n);
 /* Sets a new environment variable or changes the value of an existing one */
 char	**ft_setenv(char *var, char *value, char **envp, int n);
 
-int ft_getprompt(t_prompt prompt);
-void exec_custom(char ***output, char *full_path, char *cmd, char **envp);
+char	*ft_getprompt(t_prompt prompt);
+void	exec_custom(char ***output, char *full_path, char *cmd, char **envp);
 
 #endif

@@ -77,13 +77,12 @@ static t_prompt init_prompt(char **argv, char **envp)
 int main(int ac, char **argv, char **envp)
 {
 	t_prompt	prompt;
-	//char			*str;
-	int test;
+	char			*str;
 
 	prompt = init_prompt(argv, envp);
 	while (argv && ac)
 	{
-		test = ft_getprompt(prompt);
+		str = ft_getprompt(prompt);
 	}
 	return (0);
 }
