@@ -5,16 +5,17 @@ static char *ft_gethome(t_prompt prompt)
 	char *pwd;
 	char *home;
 	char *result;
+	char *tmp;
 
-	pwd = getcwd(NULL, 0);
+			pwd = getcwd(NULL, 0);
 	if (!pwd)
 		pwd = ft_strdup("∅ ");
 	home = ft_getenv("HOME", prompt.envp, 4);
 	if (home && home[0] && ft_strnstr(pwd, home, ft_strlen(pwd)))
 	{
-		char *temp = pwd;
+		tmp = pwd;
 		pwd = ft_strjoin(" ~", &pwd[ft_strlen(home)]);
-		free(temp);
+		free(tmp);
 	}
 	free(home);
 	result = ft_strjoin(pwd, " ");
@@ -54,4 +55,3 @@ char	*ft_getprompt(t_prompt prompt)
 	printf("%s\n", tmp2);
 	return (tmp2);
 }
-
