@@ -12,6 +12,7 @@
 # include <string.h>
 # include <ctype.h>
 # include <limits.h>
+# include <stddef.h>
 
 /* ATOI */
 /* Reads a string, and, after ignoring spaces

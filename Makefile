@@ -21,6 +21,8 @@ SRCS		=	Sources/main.c \
 					Sources/errors.c \
 					Sources/exec_cmd.c \
 					Sources/prompt.c \
+					Sources/check_args.c \
+					Sources/tokenize.c \
 
 
 OBJS		=	$(SRCS:.c=.o)

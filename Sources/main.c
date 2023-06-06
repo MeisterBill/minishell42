@@ -79,6 +79,7 @@ int main(int ac, char **argv, char **envp)
 	t_prompt	prompt;
 	char			*str;
 	char			*output;
+	int				test;
 
 	prompt = init_prompt(argv, envp);
 	while (argv && ac)
@@ -86,6 +87,8 @@ int main(int ac, char **argv, char **envp)
 		str = ft_getprompt(prompt);
 		if (str)
 			output = readline(str);
+		if (!checkargs_exec(output, &prompt))
+			test = 1;
 	}
 	return (0);
 }

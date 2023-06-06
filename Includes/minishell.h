@@ -28,7 +28,7 @@ typedef struct s_vector
 	int	y;
 } t_vector;
 
-/* Data structure useful for prompt stuff + env */
+/* Data structure for prompt + env */
 typedef struct s_prompt
 {
 	t_list	*cmds;
@@ -66,11 +66,20 @@ void	*ft_print_errors(int err_type, char *str, int exitcode);
 
 /* Retrieves a string containing the value of an env var */
 char	*ft_getenv(char *var, char **envp, int n);
+
 /* Sets a new environment variable or changes the value of an existing one */
 char	**ft_setenv(char *var, char *value, char **envp, int n);
+
 /* Returns a string with user and current directory used as prompt for readline */
 char	*ft_getprompt(t_prompt prompt);
+
 /* Executes a custom command and saves output to string ending in \n */
 void	exec_custom(char ***output, char *full_path, char *cmd, char **envp);
+
+/* Splits command string into matrix to store & exec commands */
+void	*checkargs_exec(char *output, t_prompt *prompt);
+
+/* Splits command and args into a matrix, taking quotes into account */
+char	**ft_tokenize(char const *str, char *delim);
 
 #endif
