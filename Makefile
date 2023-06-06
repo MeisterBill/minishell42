@@ -8,6 +8,13 @@ CC			=	gcc
 
 CFLAGS		=	-Werror -Wall -Wextra -g -I $(HEADER)
 
+LDLIBS   = -L/Users/Arthur/.brew/Cellar/readline/8.2.1 -lreadline
+
+LDFLAGS = -L/Users/Arthur/.brew/Cellar/readline/8.2.1
+
+CPPFLAGS = -I/Users/Arthur/.brew/Cellar/readline/8.2.1/include
+
+
 SRCS		=	Sources/main.c \
 					Sources/builtins.c \
 					Sources/env.c \
@@ -21,7 +28,7 @@ OBJS		=	$(SRCS:.c=.o)
 all			:	$(NAME)
 
 $(NAME)		:	$(OBJS) $(LIBFT) $(HEADER)
-				$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT)
+				$(CC) $(CFLAGS) $(LDFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME) $(LIBFT) $(LDLIBS)
 
 $(LIBFT)	:
 				make -C ./libft

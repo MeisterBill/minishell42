@@ -52,6 +52,5 @@ char	*ft_getprompt(t_prompt prompt)
 	free(tmp2);
 	tmp2 = ft_strjoin(tmp,"$ ");
 	free(tmp);
-	printf("%s\n", tmp2);
 	return (tmp2);
 }

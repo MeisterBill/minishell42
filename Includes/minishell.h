@@ -68,8 +68,9 @@ void	*ft_print_errors(int err_type, char *str, int exitcode);
 char	*ft_getenv(char *var, char **envp, int n);
 /* Sets a new environment variable or changes the value of an existing one */
 char	**ft_setenv(char *var, char *value, char **envp, int n);
-
+/* Returns a string with user and current directory used as prompt for readline */
 char	*ft_getprompt(t_prompt prompt);
+/* Executes a custom command and saves output to string ending in \n */
 void	exec_custom(char ***output, char *full_path, char *cmd, char **envp);
 
 #endif

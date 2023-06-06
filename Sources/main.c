@@ -78,11 +78,14 @@ int main(int ac, char **argv, char **envp)
 {
 	t_prompt	prompt;
 	char			*str;
+	char			*output;
 
 	prompt = init_prompt(argv, envp);
 	while (argv && ac)
 	{
 		str = ft_getprompt(prompt);
+		if (str)
+			output = readline(str);
 	}
 	return (0);
 }
