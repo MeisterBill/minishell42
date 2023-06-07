@@ -76,10 +76,10 @@ char	*ft_getprompt(t_prompt prompt);
 /* Executes a custom command and saves output to string ending in \n */
 void	exec_custom(char ***output, char *full_path, char *cmd, char **envp);
 
-/* Splits command string into matrix to store & exec commands */
+/* Parsing and execution of program */
 void	*checkargs_exec(char *output, t_prompt *prompt);
 
-/* Splits command and args into a matrix, taking quotes into account */
+/* Splits command and args into a matrix of tokens, taking quotes into account */
 char	**ft_tokenize(char const *str, char *delim);
 
 #endif
