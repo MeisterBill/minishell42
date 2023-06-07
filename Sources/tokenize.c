@@ -1,6 +1,6 @@
 #include "../Includes/minishell.h"
 
-static int ft_count_cmds(const char *str, char *delim, int i[2])
+static int ft_count_words(const char *str, char *delim, int i[2])
 {
 	int quotes[2];
 
@@ -28,37 +28,37 @@ static int ft_count_cmds(const char *str, char *delim, int i[2])
 	return (i[1]);
 }
 
-static char **ft_fill_matrix(char **commands, char const *str, char *delim, int i[3])
+static char **ft_fill_matrix(char **tokens, char const *output, char *delim, int i[3])
 {
-	int s_len;
+	int out_len;
 	int quotes[2];
 
 	quotes[0] = 0;
 	quotes[1] = 0;
-	s_len = ft_strlen(str);
-	while (str[i[0]])
+	out_len = ft_strlen(output);
+	while (output[i[0]])
 	{
-		while (ft_strchr(delim, str[i[0]]) && str[i[0]] != '\0')
+		while (ft_strchr(delim, output[i[0]]) && output[i[0]] != '\0')
 			i[0]++;
 		i[1] = i[0];
-		while ((!ft_strchr(delim, str[i[0]]) || quotes[0] || quotes[1]) && str[i[0]])
+		while ((!ft_strchr(delim, output[i[0]]) || quotes[0] || quotes[1]) && output[i[0]])
 		{
-			quotes[0] = (quotes[0] + (!quotes[1] && str[i[0]] == '\'')) % 2;
-			quotes[1] = (quotes[1] + (!quotes[0] && str[i[0]] == '\"')) % 2;
+			quotes[0] = (quotes[0] + (!quotes[1] && output[i[0]] == '\'')) % 2;
+			quotes[1] = (quotes[1] + (!quotes[0] && output[i[0]] == '\"')) % 2;
 			i[0]++;
 		}
-		if (i[1] >= s_len)
-			commands[i[2]++] = "\0";
+		if (i[1] >= out_len)
+			tokens[i[2]++] = "\0";
 		else
-			commands[i[2]++] = ft_substr(str, i[1], i[0] - i[1]);
+			tokens[i[2]++] = ft_substr(output, i[1], i[0] - i[1]);
 	}
-	return (commands);
+	return (tokens);
 }
 
-char **ft_tokenize(char const *str, char *delim)
+char **ft_tokenize(char const *output, char *delim)
 {
-	char **commands;
-	int nb_cmd;
+	char **tokens;
+	int nb_words;
 	int i[3];
 	int counts[2];
 
@@ -67,15 +67,15 @@ char **ft_tokenize(char const *str, char *delim)
 	i[2] = 0;
 	counts[0] = 0;
 	counts[1] = 0;
-	if (!str)
+	if (!output)
 		return (NULL);
-	nb_cmd = ft_count_cmds(str, delim, counts);
-	if (nb_cmd == -1)
+	nb_words = ft_count_words(output, delim, counts);
+	if (nb_words == -1)
 		return (NULL);
-	commands = malloc((nb_cmd + 1) * sizeof(char *));
-	if (commands == NULL)
+	tokens = malloc((nb_words + 1) * sizeof(char *));
+	if (tokens == NULL)
 		return (NULL);
-	commands = ft_fill_matrix(commands, str, delim, i);
-	commands[nb_cmd] = NULL;
-	return (commands);
+	tokens = ft_fill_matrix(tokens, output, delim, i);
+	tokens[nb_words] = NULL;
+	return (tokens);
 }
