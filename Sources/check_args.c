@@ -1,12 +1,19 @@
 #include "../Includes/minishell.h"
 
-static void *ft_parsing(char **matrix, t_prompt *prompt)
+static char	**split_vars_path(char **matrix, t_prompt *prompt)
 {
-	
+
+	return (matrix);
+}
+
+static void	*ft_parsing(char **matrix, t_prompt *prompt)
+{
+	split_vars_path(matrix, prompt);
+	prompt->cmds = fill_list();
 	return (prompt);
 }
 
-void *checkargs_exec(char *output, t_prompt *prompt)
+void	*checkargs_exec(char *output, t_prompt *prompt)
 {
 	char		**matrix;
 	//t_data	*data;

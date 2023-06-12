@@ -2,8 +2,8 @@
 
 char	*ft_getenv(char *var, char **envp, int n)
 {
-	int i;
-	int real_len;
+	int	i;
+	int	real_len;
 
 	i = 0;
 	if (n < 0)
@@ -20,10 +20,10 @@ char	*ft_getenv(char *var, char **envp, int n)
 	return (NULL);
 }
 
-char **ft_setenv(char *var, char *value, char **envp, int n)
+char	**ft_setenv(char *var, char *value, char **envp, int n)
 {
-	int i[2];
-	char *var_tmp[2];
+	int		i[2];
+	char	*var_tmp[2];
 
 	if (n < 0)
 		n = ft_strlen(var);

@@ -2,7 +2,7 @@
 
 //extern int exit_code;
 
-void *ft_print_errors(int err_type, char *str, int exitcode)
+void	*ft_print_errors(int err_type, char *str, int exitcode)
 {
 	//exit_code = exitcode;
 	exitcode = 0;

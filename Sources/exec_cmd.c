@@ -1,10 +1,10 @@
 #include "../Includes/minishell.h"
 
-static void update_output(char ***matrix, int fd)
+static void	update_output(char ***matrix, int fd)
 {
-	char **tmp_matrix;
-	char *tmp;
-	char *line;
+	char	**tmp_matrix;
+	char	*tmp;
+	char	*line;
 
 	tmp_matrix = NULL;
 	line = NULL;
@@ -12,7 +12,7 @@ static void update_output(char ***matrix, int fd)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		tmp = ft_strtrim(line, "\n");
 		free(line);
 		tmp_matrix = ft_extend_matrix(tmp_matrix, tmp);
@@ -24,9 +24,9 @@ static void update_output(char ***matrix, int fd)
 
 void	exec_custom(char ***output, char *full_path, char *cmd, char **envp)
 {
-	pid_t pid;
-	int fd[2];
-	char **matrix;
+	pid_t	pid;
+	int		fd[2];
+	char	**matrix;
 
 	pipe(fd);
 	pid = fork();

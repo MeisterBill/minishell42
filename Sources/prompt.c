@@ -1,11 +1,11 @@
 #include "../Includes/minishell.h"
 
-static char *ft_gethome(t_prompt prompt)
+static char	*ft_gethome(t_prompt prompt)
 {
-	char *pwd;
-	char *home;
-	char *result;
-	char *tmp;
+	char	*pwd;
+	char	*home;
+	char	*result;
+	char	*tmp;
 
 			pwd = getcwd(NULL, 0);
 	if (!pwd)
@@ -20,13 +20,13 @@ static char *ft_gethome(t_prompt prompt)
 	free(home);
 	result = ft_strjoin(pwd, " ");
 	free(pwd);
-	return result;
+	return (result);
 }
 
-static char *ft_getuser(t_prompt prompt)
+static char	*ft_getuser(t_prompt prompt)
 {
-	char **user;
-	char *tmp;
+	char	**user;
+	char	*tmp;
 
 	user = NULL;
 	exec_custom(&user, "/usr/bin/whoami", "whoami", prompt.envp);
@@ -50,7 +50,7 @@ char	*ft_getprompt(t_prompt prompt)
 	tmp = ft_strjoin(tmp2, tmp3);
 	free(tmp3);
 	free(tmp2);
-	tmp2 = ft_strjoin(tmp,"$ ");
+	tmp2 = ft_strjoin(tmp, "$ ");
 	free(tmp);
 	return (tmp2);
 }

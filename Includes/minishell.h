@@ -28,7 +28,7 @@ typedef struct s_vector
 	int	y;
 } t_vector;
 
-/* Data structure for prompt + env */
+/* Data structure for prompt + env + command linked list */
 typedef struct s_prompt
 {
 	t_list	*cmds;
@@ -36,7 +36,7 @@ typedef struct s_prompt
 	pid_t		pid;
 } t_prompt;
 
-/* General data structure containing most of needed data for command stuff */
+/* General data structure containing data for execution */
 typedef struct s_data
 {
 	char	**full_cmd;

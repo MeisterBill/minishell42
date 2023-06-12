@@ -33,7 +33,7 @@ static void	ft_getchildpid(t_prompt *prompt)
 	prompt->pid = pid - 1;
 }
 
-static t_prompt init_vars(t_prompt prompt, char *str, char **argv)
+static t_prompt	init_vars(t_prompt prompt, char *str, char **argv)
 {
 	char	*nb_shlvl;
 
@@ -56,11 +56,10 @@ static t_prompt init_vars(t_prompt prompt, char *str, char **argv)
 	if (!str)
 		prompt.envp = ft_setenv("_", argv[0], prompt.envp, 1);
 	free(str);
-
 	return (prompt);
 }
 
-static t_prompt init_prompt(char **argv, char **envp)
+static t_prompt	init_prompt(char **argv, char **envp)
 {
 	t_prompt	prompt;
 	char			*str;
@@ -74,12 +73,12 @@ static t_prompt init_prompt(char **argv, char **envp)
 	return (prompt);
 }
 
-int main(int ac, char **argv, char **envp)
+int	main(int ac, char **argv, char **envp)
 {
 	t_prompt	prompt;
-	char			*str;
-	char			*output;
-	int				test;
+	char		*str;
+	char		*output;
+	int			test;
 
 	prompt = init_prompt(argv, envp);
 	while (argv && ac)

@@ -1,8 +1,8 @@
 #include "../Includes/minishell.h"
 
-static int ft_count_words(const char *str, char *delim, int i[2])
+static int	ft_count_words(const char *str, char *delim, int i[2])
 {
-	int quotes[2];
+	int	quotes[2];
 
 	quotes[0] = 0;
 	quotes[1] = 0;
@@ -28,10 +28,10 @@ static int ft_count_words(const char *str, char *delim, int i[2])
 	return (i[1]);
 }
 
-static char **ft_fill_matrix(char **tokens, char const *output, char *delim, int i[3])
+static char	**ft_fill_matrix(char **tokens, char const *output, char *delim, int i[3])
 {
-	int out_len;
-	int quotes[2];
+	int	out_len;
+	int	quotes[2];
 
 	quotes[0] = 0;
 	quotes[1] = 0;
@@ -55,12 +55,12 @@ static char **ft_fill_matrix(char **tokens, char const *output, char *delim, int
 	return (tokens);
 }
 
-char **ft_tokenize(char const *output, char *delim)
+char	**ft_tokenize(char const *output, char *delim)
 {
-	char **tokens;
-	int nb_words;
-	int i[3];
-	int counts[2];
+	char	**tokens;
+	int		nb_words;
+	int		i[3];
+	int		counts[2];
 
 	i[0] = 0;
 	i[1] = 0;
