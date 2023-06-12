@@ -2,13 +2,20 @@
 
 static char	**split_vars_path(char **matrix, t_prompt *prompt)
 {
+		int	i;
+		int	quotes[2];
 
-	return (matrix);
+		i = -1;
+		while (matrix && matrix[++i])
+		{
+			matrix[i] = handle_vars(matrix[i], -1, quotes, prompt);
+		}
+		return (matrix);
 }
 
 static void	*ft_parsing(char **matrix, t_prompt *prompt)
 {
-	split_vars_path(matrix, prompt);
+	matrix = split_vars_path(matrix, prompt);
 	prompt->cmds = fill_list();
 	return (prompt);
 }
