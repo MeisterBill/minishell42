@@ -16,7 +16,7 @@ static char	**split_vars_path(char **matrix, t_prompt *prompt)
 static void	*ft_parsing(char **matrix, t_prompt *prompt)
 {
 	matrix = split_vars_path(matrix, prompt);
-	prompt->cmds = fill_list();
+	//prompt->cmds = fill_list();
 	return (prompt);
 }
 

@@ -14,6 +14,7 @@ SRCS		=	ft_atoi.c \
 					ft_split.c \
 					ft_str_x.c \
 					ft_str_x_2.c \
+					ft_str_x_3.c \
 					get_next_line.c \
 
 

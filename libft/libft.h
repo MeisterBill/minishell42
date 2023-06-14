@@ -1,5 +1,4 @@
 #ifndef LIBFT_H
-
 # define LIBFT_H
 
 # ifndef BUFFER_SIZE
@@ -20,9 +19,9 @@ with ft_isspace, saves the string into an integer */
 int			ft_atoi(const char *str);
 int			ft_isspace(char c);
 
-		/* CALLOC */
-		/* Reserves count blocks of size bits of memory */
-		void *ft_calloc(size_t count, size_t size);
+/* CALLOC */
+/* Reserves count blocks of size bits of memory */
+void		*ft_calloc(size_t count, size_t size);
 
 /* Writes n zeroes to the string s */
 void		ft_bzero(void *s, size_t n);
@@ -60,6 +59,9 @@ char		*ft_strchr(const char *str, int n);
 
 /* Looks for a specific character inside a given string, returning its index */
 int			ft_strchr_index(const char *str, int n);
+
+/* Looks for a specific set of chars inside a given string, returning its index */
+int			ft_strchars_i(const char *s, char *set);
 
 /* Copies size - 1 bytes from a source string to a destination string */
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);

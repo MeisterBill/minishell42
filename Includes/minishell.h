@@ -82,4 +82,7 @@ void	*checkargs_exec(char *output, t_prompt *prompt);
 /* Splits command and args into a matrix of tokens, taking quotes into account */
 char	**ft_tokenize(char const *str, char *delim);
 
+/* Replaces env variables in a string if not in simple quotes */
+char	*handle_vars(char *str, int i, int quotes[2], t_prompt *prompt);
+
 #endif
