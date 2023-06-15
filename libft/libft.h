@@ -95,9 +95,11 @@ char		**ft_extend_matrix(char **ex_matrix, char *to_add);
 void		ft_free_matrix(char ***matrix);
 /* Allocates and fully duplicates a matrix (array of arrays) */
 char		**ft_dup_matrix(char **matrix);
+/* Replaces n-th line of original matrix with new matrix */
+char		**ft_replace_in_matrix(char ***original, char **new, int n);
 
-/* GET_NEXT_LINE */
-char *ft_readfile_and_pushtostash(int fd, char *stash);
+		/* GET_NEXT_LINE */
+		char *ft_readfile_and_pushtostash(int fd, char *stash);
 char *ft_checkbackn_and_pushtoline(char *stash);
 char *ft_push_cutstash_to_nextstash(char *stash);
 char *get_next_line(int fd);

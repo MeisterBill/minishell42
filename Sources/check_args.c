@@ -1,22 +1,27 @@
 #include "../Includes/minishell.h"
 
-static char	**split_vars_path(char **matrix, t_prompt *prompt)
+static char	**split_all(char **matrix, t_prompt *prompt)
 {
-		int	i;
-		int	quotes[2];
+		int		i;
+		int		quotes[2];
+		char	**tmp_matrix;
 
 		i = -1;
 		while (matrix && matrix[++i])
 		{
 			matrix[i] = handle_vars(matrix[i], -1, quotes, prompt);
 			matrix[i] = handle_path(matrix[i], -1, quotes, ft_getenv("HOME", prompt->envp, 4));
+			tmp_matrix = handle_pipe_redir(matrix[i], "<|>");
+			ft_replace_in_matrix(&matrix, tmp_matrix, i);
+			i += ft_matrixlen(tmp_matrix) - 1;
+			ft_free_matrix(&tmp_matrix);
 		}
 		return (matrix);
 }
 
 static void	*ft_parsing(char **matrix, t_prompt *prompt)
 {
-	matrix = split_vars_path(matrix, prompt);
+	matrix = split_all(matrix, prompt);
 	//prompt->cmds = fill_list();
 	return (prompt);
 }

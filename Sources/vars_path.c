@@ -25,7 +25,6 @@ char	*handle_path(char *str, int i, int quotes[2], char *path_var)
 		}
 	}
 	free(path_var);
-	printf("%s\n", str);
 	return (str);
 }
 
