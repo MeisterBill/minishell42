@@ -1,5 +1,34 @@
 #include "../Includes/minishell.h"
 
+char	*handle_path(char *str, int i, int quotes[2], char *path_var)
+{
+	char	*path;
+	char	*tmp;
+
+	quotes[0] = 0;
+	quotes[1] = 0;
+	while (str && str[++i])
+	{
+		quotes[0] = (quotes[0] + (!quotes[1] && str[i] == '\'')) % 2;
+		quotes[1] = (quotes[1] + (!quotes[0] && str[i] == '\"')) % 2;
+		if (!quotes[0] && !quotes[1] && str[i] == '~' && (i == 0 || str[i - 1] != '$'))
+		{
+			tmp = ft_substr(str, 0, i);
+			path = ft_strjoin(tmp, path_var);
+			free(tmp);
+			tmp = ft_substr(str, i + 1, ft_strlen(str));
+			free(str);
+			str = ft_strjoin(path, tmp);
+			free(tmp);
+			free(path);
+			return (handle_path(str, i + ft_strlen(path_var) - 1, quotes, path_var));
+		}
+	}
+	free(path_var);
+	printf("%s\n", str);
+	return (str);
+}
+
 static char	*replace_var_value(char *str, int i, t_prompt *prompt)
 {
 	char	*tmp;

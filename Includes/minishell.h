@@ -85,4 +85,7 @@ char	**ft_tokenize(char const *str, char *delim);
 /* Replaces env variables in a string if not in simple quotes */
 char	*handle_vars(char *str, int i, int quotes[2], t_prompt *prompt);
 
+/* Replaces "~" to home directory in a string if not in quotes */
+char	*handle_path(char *str, int i, int quotes[2], char *path_var);
+
 #endif

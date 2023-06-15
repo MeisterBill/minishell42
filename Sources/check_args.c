@@ -9,6 +9,7 @@ static char	**split_vars_path(char **matrix, t_prompt *prompt)
 		while (matrix && matrix[++i])
 		{
 			matrix[i] = handle_vars(matrix[i], -1, quotes, prompt);
+			matrix[i] = handle_path(matrix[i], -1, quotes, ft_getenv("HOME", prompt->envp, 4));
 		}
 		return (matrix);
 }
