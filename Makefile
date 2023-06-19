@@ -25,6 +25,8 @@ SRCS		=	Sources/main.c \
 					Sources/tokenize.c \
 					Sources/vars_path.c \
 					Sources/redir_pipe.c \
+					Sources/fill_list.c \
+					Sources/trim_quotes.c \
 
 
 OBJS		=	$(SRCS:.c=.o)

@@ -22,7 +22,7 @@ static char	**split_all(char **matrix, t_prompt *prompt)
 static void	*ft_parsing(char **matrix, t_prompt *prompt)
 {
 	matrix = split_all(matrix, prompt);
-	//prompt->cmds = fill_list();
+	prompt->cmds = fill_list(matrix, -1);
 	return (prompt);
 }
 
@@ -39,7 +39,6 @@ void	*checkargs_exec(char *output, t_prompt *prompt)
 	if (output[0] != '\0')
 		add_history(output);
 	matrix = ft_tokenize(output, " ");
-	//printf("%s\n", matrix[2]);
 	free(output);
 	if (!matrix)
 		ft_print_errors(QUOTE, NULL, 1);

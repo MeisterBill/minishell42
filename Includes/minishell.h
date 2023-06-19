@@ -91,4 +91,10 @@ char	*handle_path(char *str, int i, int quotes[2], char *path_var);
 /* Copy of ft_split but handles pipe and redirections as separators and takes quotes into account */
 char	**handle_pipe_redir(char const *str, char *delim);
 
+/* Replaces the matrix with all commands and args into a linked list with this same information */
+t_list	*fill_list(char **matrix, int i);
+
+/* Trims all needed quotes from the original input */
+char		*trim_quotes(char const *str, int single, int doubleq);
+
 #endif
