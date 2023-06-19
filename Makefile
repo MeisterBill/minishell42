@@ -27,6 +27,7 @@ SRCS		=	Sources/main.c \
 					Sources/redir_pipe.c \
 					Sources/fill_list.c \
 					Sources/trim_quotes.c \
+					Sources/linked_list1.c \
 
 
 OBJS		=	$(SRCS:.c=.o)

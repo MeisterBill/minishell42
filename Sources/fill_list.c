@@ -26,7 +26,7 @@ t_list	*fill_list(char **matrix, int i)
 	tmp[1] = ft_trim_quotes(matrix);
 	while (matrix[++i])
 	{
-
+		cmds[1] = ft_listlast(cmds[0]);
 	}
 	return (cmds[0]);
 }

@@ -97,4 +97,8 @@ t_list	*fill_list(char **matrix, int i);
 /* Trims all needed quotes from the original input */
 char		*trim_quotes(char const *str, int single, int doubleq);
 
+/* LINKED LISTS */
+/* Retrieves last element of the list */
+t_list	*ft_lstlast(t_list *list);
+
 #endif
