@@ -99,6 +99,10 @@ char		*trim_quotes(char const *str, int single, int doubleq);
 
 /* LINKED LISTS */
 /* Retrieves last element of the list */
-t_list	*ft_lstlast(t_list *list);
+t_list	*ft_listlast(t_list *list);
+/* Adds new element at the end of the linked list */
+void		ft_listadd_back(t_list **list, t_list *new_elem);
+/* Creates new list element allocating with malloc */
+t_list	*ft_listnew(void *content);
 
 #endif
