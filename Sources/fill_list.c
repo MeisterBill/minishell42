@@ -31,6 +31,33 @@ static t_data	*init_data(void)
 	return (data);
 }
 
+static t_data	*fill_content(t_data *content, char **matrix[2], int *i)
+{
+	if (matrix[0][*i])
+	{
+		if (matrix[0][*i][0] == '>' && matrix[0][*i + 1] && matrix[0][*i + 1][0] == '>')
+			content = get_outfile2(content, matrix[1], i);
+		else if (matrix[0][*i][0] == '>')
+			content = get_outfile(content, matrix[1], i);
+		else if (matrix[0][*i][0] == '<' && matrix[0][*i + 1] &&
+						 matrix[0][*i + 1][0] == '<')
+			content = get_infile2(content, matrix[1], i);
+		else if (matrix[0][*i][0] == '<')
+			content = get_infile(content, matrix[1], i);
+		else if (matrix[0][*i][0] != '|')
+			content->full_cmd = ft_extend_matrix(content->full_cmd, matrix[1][*i]);
+		else
+		{
+			ft_print_errors(PIPENDERR, NULL, 2);
+			*i = -2;
+		}
+		return (content);
+	}
+	ft_print_errors(PIPENDERR, NULL, 2);
+	*i = -2;
+	return (content);
+}
+
 t_list	*fill_list(char **matrix, int i)
 {
 	t_list	*cmds[2];
@@ -48,6 +75,7 @@ t_list	*fill_list(char **matrix, int i)
 			cmds[1] = ft_listlast(cmds[0]);
 		}
 		tmp[0] = matrix;
+		cmds[1]->content = fill_content(cmds[1]->content, tmp, &i);
 	}
 	return (cmds[0]);
 }
