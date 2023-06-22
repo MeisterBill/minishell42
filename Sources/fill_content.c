@@ -51,3 +51,30 @@ t_data	*get_out_append(t_data *content, char **matrix, int *i)
 	}
 	return (content);
 }
+
+t_data *get_outfile(t_data *content, char **matrix, int *i)
+{
+	char	*nl;
+	int		flags[2];
+	int		test;
+
+	flags[0] = 1;
+	flags[1] = 0;
+	nl = "minishell: syntax error near unexpected token `newline'";
+	(*i)++;
+	if (matrix[*i])
+		content->outfile = get_fd(content->outfile, matrix[*i], flags);
+	if (!matrix[*i] || content->outfile == -1)
+	{
+		*i = -1;
+		if (content->outfile != -1)
+		{
+			ft_putendl_fd(nl, 2);
+			//exit_code = 2;
+		}
+		else
+			//exit_code = 1;
+			test = 1;
+	}
+	return (content);
+}
