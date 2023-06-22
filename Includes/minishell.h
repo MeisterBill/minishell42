@@ -86,10 +86,10 @@ char	**ft_tokenize(char const *str, char *delim);
 char	*handle_vars(char *str, int i, int quotes[2], t_prompt *prompt);
 
 /* Replaces "~" to home directory in a string if not in quotes */
-char	*handle_path(char *str, int i, int quotes[2], char *path_var);
+char		*handle_path(char *str, int i, int quotes[2], char *path_var);
 
 /* Copy of ft_split but handles pipe and redirections as separators and takes quotes into account */
-char	**handle_pipe_redir(char const *str, char *delim);
+char		**handle_pipe_redir(char const *str, char *delim);
 
 /* Replaces the matrix with all commands and args into a linked list with this same information */
 t_list	*fill_list(char **matrix, int i);
@@ -106,11 +106,13 @@ void		ft_listadd_back(t_list **list, t_list *new_elem);
 t_list	*ft_listnew(void *content);
 
 /* REDIRECTIONS / APPEND */
-/* Tries to open proper file as outfile (>> case) */
-t_data *get_out_append(t_data *content, char **matrix, int *i);
 /* Opens a file descriptor with the needed open flags */
 int			get_fd(int oldfd, char *path, int flags[2]);
+/* Tries to open proper file as outfile (>> case) */
+t_data *get_out_append(t_data *content, char **matrix, int *i);
 /* Tries to open proper file as outfile (> case) */
 t_data	*get_outfile(t_data *content, char **matrix, int *i);
+/* Tries to open proper file as infile (< case) */
+t_data	*get_infile(t_data *content, char **matrix, int *i);
 
 #endif

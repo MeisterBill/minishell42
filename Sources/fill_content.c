@@ -33,7 +33,7 @@ t_data	*get_out_append(t_data *content, char **matrix, int *i)
 
 	flags[0] = 1;
 	flags[1] = 1;
-	nl = "minishell: syntax error near unexpected token `newline'";
+	nl = "noobshell: syntax error near unexpected token `newline'";
 	(*i)++;
 	if (matrix[++(*i)])
 		content->outfile = get_fd(content->outfile, matrix[*i], flags);
@@ -60,7 +60,7 @@ t_data *get_outfile(t_data *content, char **matrix, int *i)
 
 	flags[0] = 1;
 	flags[1] = 0;
-	nl = "minishell: syntax error near unexpected token `newline'";
+	nl = "noobshell: syntax error near unexpected token `newline'";
 	(*i)++;
 	if (matrix[*i])
 		content->outfile = get_fd(content->outfile, matrix[*i], flags);
@@ -74,6 +74,33 @@ t_data *get_outfile(t_data *content, char **matrix, int *i)
 		}
 		else
 			//exit_code = 1;
+			test = 1;
+	}
+	return (content);
+}
+
+t_data *get_infile(t_data *content, char **matrix, int *i)
+{
+	char	*nl;
+	int		flags[2];
+	int		test;
+
+	flags[0] = 0;
+	flags[1] = 0;
+	nl = "noobshell: syntax error near unexpected token `newline'";
+	(*i)++;
+	if (matrix[*i])
+		content->infile = get_fd(content->infile, matrix[*i], flags);
+	if (!matrix[*i] || content->infile == -1)
+	{
+		*i = -1;
+		if (content->infile != -1)
+		{
+			ft_putendl_fd(nl, 2);
+			//g_status = 2;
+		}
+		else
+			//g_status = 1;
 			test = 1;
 	}
 	return (content);
