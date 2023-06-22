@@ -13,7 +13,7 @@
 
 //extern int exit_code;
 
-static void	ft_getchildpid(t_prompt *prompt)
+static void	ft_getshellpid(t_prompt *prompt)
 {
 	pid_t	pid;
 
@@ -68,7 +68,7 @@ static t_prompt	init_prompt(char **argv, char **envp)
 	prompt.cmds = NULL;
 	prompt.envp = ft_dup_matrix(envp);
 	//exit_code = 0;
-	ft_getchildpid(&prompt);
+	ft_getshellpid(&prompt);
 	prompt = init_vars(prompt, str, argv);
 	return (prompt);
 }

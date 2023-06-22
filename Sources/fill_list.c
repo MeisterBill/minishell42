@@ -36,12 +36,11 @@ static t_data	*fill_content(t_data *content, char **matrix[2], int *i)
 	if (matrix[0][*i])
 	{
 		if (matrix[0][*i][0] == '>' && matrix[0][*i + 1] && matrix[0][*i + 1][0] == '>')
-			content = get_outfile2(content, matrix[1], i);
+			content = get_out_append(content, matrix[1], i);
 		else if (matrix[0][*i][0] == '>')
 			content = get_outfile(content, matrix[1], i);
-		else if (matrix[0][*i][0] == '<' && matrix[0][*i + 1] &&
-						 matrix[0][*i + 1][0] == '<')
-			content = get_infile2(content, matrix[1], i);
+		else if (matrix[0][*i][0] == '<' && matrix[0][*i + 1] && matrix[0][*i + 1][0] == '<')
+			content = get_in_append(content, matrix[1], i);
 		else if (matrix[0][*i][0] == '<')
 			content = get_infile(content, matrix[1], i);
 		else if (matrix[0][*i][0] != '|')

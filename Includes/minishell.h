@@ -105,7 +105,7 @@ void		ft_listadd_back(t_list **list, t_list *new_elem);
 /* Creates new list element allocating with malloc */
 t_list	*ft_listnew(void *content);
 
-t_data *get_outfile2(t_data *content, char **matrix, int *i);
+t_data *get_out_append(t_data *content, char **matrix, int *i);
 
 int			get_fd(int oldfd, char *path, int flags[2]);
 
