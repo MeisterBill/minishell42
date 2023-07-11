@@ -115,4 +115,7 @@ t_data	*get_outfile(t_data *content, char **matrix, int *i);
 /* Tries to open proper file as infile (< case) */
 t_data	*get_infile(t_data *content, char **matrix, int *i);
 
+/* Function to handle SIGINT signals for main process */
+void		handle_sigint(int sig);
+
 #endif

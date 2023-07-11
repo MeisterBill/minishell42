@@ -83,6 +83,8 @@ int	main(int ac, char **argv, char **envp)
 	prompt = init_prompt(argv, envp);
 	while (argv && ac)
 	{
+		signal(SIGINT, handle_sigint);
+		signal(SIGQUIT, SIG_IGN);
 		str = ft_getprompt(prompt);
 		if (str)
 			output = readline(str);
