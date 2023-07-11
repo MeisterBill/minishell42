@@ -79,6 +79,35 @@ t_data *get_outfile(t_data *content, char **matrix, int *i)
 	return (content);
 }
 
+t_data	*get_in_heredoc(t_data *content, char **matrix, int *i)
+{
+	char *aux[2];
+	char *nl;
+	char *str[2];
+
+	str[0] = NULL;
+	str[1] = NULL;
+	aux[0] = NULL;
+	aux[1] = "noobshell: warning: here-document delimited by end-of-file";
+	nl = "noobshell: syntax error near unexpected token `newline'";
+	(*i)++;
+	if (matrix[++(*i)])
+	{
+		aux[0] = matrix[*i];
+		content->infile = get_here_doc(str, aux);
+	}
+	if (!matrix[*i] || content->infile == -1)
+	{
+		*i = -1;
+		if (content->infile != -1)
+		{
+			ft_putendl_fd(nl, 2);
+			//exit_code = 2;
+		}
+	}
+	return (content);
+}
+
 t_data *get_infile(t_data *content, char **matrix, int *i)
 {
 	char	*nl;
@@ -97,10 +126,10 @@ t_data *get_infile(t_data *content, char **matrix, int *i)
 		if (content->infile != -1)
 		{
 			ft_putendl_fd(nl, 2);
-			//g_status = 2;
+			//exit_code = 2;
 		}
 		else
-			//g_status = 1;
+			//exit_code = 1;
 			test = 1;
 	}
 	return (content);

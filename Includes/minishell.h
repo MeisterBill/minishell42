@@ -114,8 +114,15 @@ t_data *get_out_append(t_data *content, char **matrix, int *i);
 t_data	*get_outfile(t_data *content, char **matrix, int *i);
 /* Tries to open proper file as infile (< case) */
 t_data	*get_infile(t_data *content, char **matrix, int *i);
+/* Tries to open read heredoc as infile (<< case) */
+t_data	*get_in_heredoc(t_data *content, char **matrix, int *i);
 
+/* SIGNALS */
 /* Function to handle SIGINT signals for main process */
 void		handle_sigint(int sig);
+
+/* HEREDOC */
+/* Retrieves a string from standard input, expanding vars when needed */
+int			get_here_doc(char *str[2], char *aux[2]);
 
 #endif

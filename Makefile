@@ -29,6 +29,8 @@ SRCS		=	Sources/main.c \
 					Sources/trim_quotes.c \
 					Sources/linked_list1.c \
 					Sources/fill_content.c \
+					Sources/signal.c \
+					Sources/heredoc.c \
 
 
 OBJS		=	$(SRCS:.c=.o)
