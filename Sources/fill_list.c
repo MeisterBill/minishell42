@@ -57,6 +57,14 @@ static t_data	*fill_content(t_data *content, char **matrix[2], int *i)
 	return (content);
 }
 
+static t_list	*stop_fill(t_list *cmds, char **matrix, char **tmp)
+{
+	ft_lstclear(&cmds, free_content);
+	ft_free_matrix(&tmp);
+	ft_free_matrix(&matrix);
+	return (NULL);
+}
+
 t_list	*fill_list(char **matrix, int i)
 {
 	t_list	*cmds[2];
@@ -75,6 +83,12 @@ t_list	*fill_list(char **matrix, int i)
 		}
 		tmp[0] = matrix;
 		cmds[1]->content = fill_content(cmds[1]->content, tmp, &i);
+		if (i < 0)
+			return (stop_fill(cmds[0], matrix, tmp[1]));
+		if (!matrix[i])
+			break;
 	}
+	ft_free_matrix(&tmp[1]);
+	ft_free_matrix(&matrix);
 	return (cmds[0]);
 }

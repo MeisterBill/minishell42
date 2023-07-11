@@ -41,3 +41,16 @@ t_list	*ft_listnew(void *content)
 	list->next = NULL;
 	return (list);
 }
+
+int	ft_lstsize(t_list *list)
+{
+	int	size;
+
+	size = 0;
+	while (list)
+	{
+		list = list->next;
+		size++;
+	}
+	return (size);
+}

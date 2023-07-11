@@ -31,3 +31,17 @@ void	*ft_print_errors(int err_type, char *str, int exitcode)
 	ft_putendl_fd(str, 2);
 	return (NULL);
 }
+
+void	free_content(void *contentt)
+{
+	t_data	*content;
+
+	content = contentt;
+	ft_free_matrix(&content->full_cmd);
+	free(content->full_path);
+	if (content->infile != STDIN_FILENO)
+		close(content->infile);
+	if (content->outfile != STDOUT_FILENO)
+		close(content->outfile);
+	free(content);
+}

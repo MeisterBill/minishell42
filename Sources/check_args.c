@@ -21,8 +21,14 @@ static char	**split_all(char **matrix, t_prompt *prompt)
 
 static void	*ft_parsing(char **matrix, t_prompt *prompt)
 {
+	int	i;
+
 	matrix = split_all(matrix, prompt);
 	prompt->cmds = fill_list(matrix, -1);
+	if (!prompt->cmds)
+			return (prompt);
+	i = ft_lstsize(prompt->cmds);
+	
 	return (prompt);
 }
 
