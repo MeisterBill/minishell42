@@ -7,7 +7,7 @@ static char	*ft_gethome(t_prompt prompt)
 	char	*result;
 	char	*tmp;
 
-			pwd = getcwd(NULL, 0);
+	pwd = getcwd(NULL, 0);
 	if (!pwd)
 		pwd = ft_strdup("∅ ");
 	home = ft_getenv("HOME", prompt.envp, 4);

@@ -88,7 +88,7 @@ t_data	*get_in_heredoc(t_data *content, char **matrix, int *i)
 	str[0] = NULL;
 	str[1] = NULL;
 	aux[0] = NULL;
-	aux[1] = "noobshell: warning: here-document delimited by end-of-file";
+	aux[1] = "noobshell: warning: here-document setited by end-of-file";
 	nl = "noobshell: syntax error near unexpected token `newline'";
 	(*i)++;
 	if (matrix[++(*i)])

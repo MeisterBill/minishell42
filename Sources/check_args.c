@@ -28,7 +28,7 @@ static void	*ft_parsing(char **matrix, t_prompt *prompt)
 	if (!prompt->cmds)
 			return (prompt);
 	i = ft_lstsize(prompt->cmds);
-	
+
 	return (prompt);
 }
 

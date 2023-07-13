@@ -14,7 +14,7 @@
 # define READ_END 0
 # define WRITE_END 1
 
-/* Implementation of linked list */
+/* Implementation of linked list, content will become a t_data struct */
 typedef struct s_list
 {
 	void					*content;
@@ -67,12 +67,11 @@ void	*ft_print_errors(int err_type, char *str, int exitcode);
 /* Frees all elements in linked list nodes */
 void	free_content(void *contentt);
 
+/* ENV + PROMPT */
 /* Retrieves a string containing the value of an env var */
 char	*ft_getenv(char *var, char **envp, int n);
-
 /* Sets a new environment variable or changes the value of an existing one */
 char	**ft_setenv(char *var, char *value, char **envp, int n);
-
 /* Returns a string with user and current directory used as prompt for readline */
 char	*ft_getprompt(t_prompt prompt);
 
@@ -83,7 +82,7 @@ void	exec_custom(char ***output, char *full_path, char *cmd, char **envp);
 void	*checkargs_exec(char *output, t_prompt *prompt);
 
 /* Splits command and args into a matrix of tokens, taking quotes into account */
-char	**ft_tokenize(char const *str, char *delim);
+char	**ft_tokenize(char const *str, char *set);
 
 /* Replaces env variables in a string if not in simple quotes */
 char	*handle_vars(char *str, int i, int quotes[2], t_prompt *prompt);
@@ -92,7 +91,7 @@ char	*handle_vars(char *str, int i, int quotes[2], t_prompt *prompt);
 char		*handle_path(char *str, int i, int quotes[2], char *path_var);
 
 /* Copy of ft_split but handles pipe and redirections as separators and takes quotes into account */
-char		**handle_pipe_redir(char const *str, char *delim);
+char		**handle_pipe_redir(char const *str, char *set);
 
 /* Replaces the matrix with all commands and args into a linked list with this same information */
 t_list	*fill_list(char **matrix, int i);
