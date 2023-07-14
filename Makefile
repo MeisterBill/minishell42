@@ -28,7 +28,7 @@ SRCS		=	Sources/main.c \
 					Sources/fill_list.c \
 					Sources/trim_quotes.c \
 					Sources/linked_list1.c \
-					Sources/fill_content.c \
+					Sources/redirections.c \
 					Sources/signal.c \
 					Sources/heredoc.c \
 

@@ -31,20 +31,20 @@ static t_data	*init_data(void)
 	return (data);
 }
 
-static t_data	*fill_content(t_data *content, char **matrix[2], int *i)
+static t_data	*fill_content(t_data *content, char **tmp[2], int *i)
 {
-	if (matrix[0][*i])
+	if (tmp[0][*i])
 	{
-		if (matrix[0][*i][0] == '>' && matrix[0][*i + 1] && matrix[0][*i + 1][0] == '>')
-			content = get_out_append(content, matrix[1], i);
-		else if (matrix[0][*i][0] == '>')
-			content = get_outfile(content, matrix[1], i);
-		else if (matrix[0][*i][0] == '<' && matrix[0][*i + 1] && matrix[0][*i + 1][0] == '<')
-			content = get_in_heredoc(content, matrix[1], i);
-		else if (matrix[0][*i][0] == '<')
-			content = get_infile(content, matrix[1], i);
-		else if (matrix[0][*i][0] != '|')
-			content->full_cmd = ft_extend_matrix(content->full_cmd, matrix[1][*i]);
+		if (tmp[0][*i][0] == '>' && tmp[0][*i + 1] && tmp[0][*i + 1][0] == '>')
+			content = get_out_append(content, tmp[1], i);
+		else if (tmp[0][*i][0] == '>')
+			content = get_outfile(content, tmp[1], i);
+		else if (tmp[0][*i][0] == '<' && tmp[0][*i + 1] && tmp[0][*i + 1][0] == '<')
+			content = get_in_heredoc(content, tmp[1], i);
+		else if (tmp[0][*i][0] == '<')
+			content = get_infile(content, tmp[1], i);
+		else if (tmp[0][*i][0] != '|')
+			content->full_cmd = ft_extend_tmp(content->full_cmd, tmp[1][*i]);
 		else
 		{
 			ft_print_errors(PIPENDERR, NULL, 2);

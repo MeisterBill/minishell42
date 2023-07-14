@@ -1,5 +1,7 @@
 #include "../Includes/minishell.h"
 
+extern int	exit_code;
+
 static char	**split_all(char **matrix, t_prompt *prompt)
 {
 		int		i;
@@ -22,13 +24,14 @@ static char	**split_all(char **matrix, t_prompt *prompt)
 static void	*ft_parsing(char **matrix, t_prompt *prompt)
 {
 	int	i;
+	int	is_exit;
 
 	matrix = split_all(matrix, prompt);
 	prompt->cmds = fill_list(matrix, -1);
 	if (!prompt->cmds)
 			return (prompt);
 	i = ft_lstsize(prompt->cmds);
-
+	exit_code = builtin(prompt, prompt->cmds, &is_exit, 0);
 	return (prompt);
 }
 
