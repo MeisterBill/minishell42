@@ -133,6 +133,8 @@ int			get_here_doc(char *str[2], char *aux[2]);
 /* Handles all builtin functions */
 int 		builtin(t_prompt *prompt, t_list *cmds, int *is_exit, int c_len);
 /* Implementation of the exit builtin */
-int			ft_exit(t_list *cmd, int *is_exit);
+int			ft_exit(t_list *cmds, int *is_exit);
+/* Implementation of the cd builtin */
+int			ft_cd(t_prompt *prompt);
 
 #endif

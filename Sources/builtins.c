@@ -40,3 +40,55 @@ int	ft_pwd(void)
 	free(buffer);
 	return (0);
 }
+
+static void	change_error_cd(char **str[2])
+{
+	DIR	*dir;
+
+	dir = NULL;
+	if (str[0][1])
+		dir = opendir(str[0][1]);
+	if (!str[0][1] && str[1][0] && !str[1][0][0])
+	{
+		exit_code = 1;
+		ft_putstr_fd("noobshell: HOME not set\n", 2);
+	}
+	if (str[1][0] && !str[0][1])
+		exit_code = chdir(str[1][0]) == -1;
+	if (str[0][1] && dir && access(str[0][1], F_OK) != -1)
+		chdir(str[0][1]);
+	else if (str[0][1] && access(str[0][1], F_OK) == -1)
+		ft_print_errors(NODIR, str[0][1], 1);
+	else if (str[0][1])
+		ft_print_errors(NOT_DIR, str[0][1], 1);
+	if (str[0][1] && dir)
+		closedir(dir);
+}
+
+int	ft_cd(t_prompt *prompt)
+{
+	char **str[2];
+	char *tmp;
+
+	exit_code = 0;
+	str[0] = ((t_data *)prompt->cmds->content)->full_cmd;
+	tmp = mini_getenv("HOME", prompt->envp, 4);
+	if (!tmp)
+		tmp = ft_strdup("");
+	str[1] = ft_extend_matrix(NULL, tmp);
+	free(tmp);
+	tmp = getcwd(NULL, 0);
+	str[1] = ft_extend_matrix(str[1], tmp);
+	free(tmp);
+	change_error_cd(str);
+	if (!exit_code)
+		prompt->envp = mini_setenv("OLDPWD", str[1][1], prompt->envp, 6);
+	tmp = getcwd(NULL, 0);
+	if (!tmp)
+		tmp = ft_strdup("");
+	str[1] = ft_extend_matrix(str[1], tmp);
+	free(tmp);
+	prompt->envp = mini_setenv("PWD", str[1][2], prompt->envp, 3);
+	ft_free_matrix(&str[1]);
+	return (exit_code);
+}

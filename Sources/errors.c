@@ -71,13 +71,13 @@ static int	ft_atoi2(const char *nptr, long *nbr)
 	return (0);
 }
 
-int	ft_exit(t_list *cmd, int *is_exit)
+int	ft_exit(t_list *cmds, int *is_exit)
 {
 	t_data	*content;
 	long		status[2];
 
-	content = cmd->content;
-	*is_exit = !cmd->next;
+	content = cmds->content;
+	*is_exit = !cmds->next;
 	if (*is_exit)
 		ft_putstr_fd("exit\n", 2);
 	if (!content->full_cmd || !content->full_cmd[1])
