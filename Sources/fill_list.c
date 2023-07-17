@@ -44,7 +44,7 @@ static t_data	*fill_content(t_data *content, char **tmp[2], int *i)
 		else if (tmp[0][*i][0] == '<')
 			content = get_infile(content, tmp[1], i);
 		else if (tmp[0][*i][0] != '|')
-			content->full_cmd = ft_extend_tmp(content->full_cmd, tmp[1][*i]);
+			content->full_cmd = ft_extend_matrix(content->full_cmd, tmp[1][*i]);
 		else
 		{
 			ft_print_errors(PIPENDERR, NULL, 2);
@@ -59,7 +59,7 @@ static t_data	*fill_content(t_data *content, char **tmp[2], int *i)
 
 static t_list	*stop_fill(t_list *cmds, char **matrix, char **tmp)
 {
-	ft_lstclear(&cmds, free_content);
+	ft_listclear(&cmds, free_content);
 	ft_free_matrix(&tmp);
 	ft_free_matrix(&matrix);
 	return (NULL);

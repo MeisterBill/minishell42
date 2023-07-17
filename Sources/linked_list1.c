@@ -54,3 +54,22 @@ int	ft_lstsize(t_list *list)
 	}
 	return (size);
 }
+
+void	ft_listclear(t_list **list, void (*free_fct)(void *))
+{
+	t_list	*start;
+	t_list	*tmp;
+
+	if (!list)
+		return;
+	start = *list;
+	tmp = NULL;
+	while (start)
+	{
+		tmp = start;
+		start = start->next;
+		free_fct(tmp->content);
+		free(tmp);
+	}
+	*list = NULL;
+}
