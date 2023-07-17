@@ -91,3 +91,28 @@ int	ft_export(t_prompt *prompt)
 	}
 	return (0);
 }
+
+int	ft_unset(t_prompt *prompt)
+{
+	char	**mtx;
+	char	*tmp;
+	int		i[2];
+
+	i[0] = 0;
+	mtx = ((t_data *)prompt->cmds->content)->full_cmd;
+	if (ft_matrixlen(mtx) >= 2)
+	{
+		while (mtx[++i[0]])
+		{
+			if (mtx[i[0]][ft_strlen(mtx[i[0]]) - 1] != '=')
+			{
+				tmp = ft_strjoin(mtx[i[0]], "=");
+				free(mtx[i[0]]);
+				mtx[i[0]] = tmp;
+			}
+			if (var_in_envp(mtx[i[0]], prompt->envp, i))
+				ft_replace_in_matrix(&prompt->envp, NULL, i[1]);
+		}
+	}
+	return (0);
+}
