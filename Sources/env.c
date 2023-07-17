@@ -48,3 +48,46 @@ char	**ft_setenv(char *var, char *value, char **envp, int n)
 	free(var_tmp[1]);
 	return (envp);
 }
+
+static int	var_in_envp(char *str, char **envp, int i[2])
+{
+	int	pos;
+
+	i[1] = 0;
+	pos = ft_strchr_index(str, '=');
+	if (pos == -1)
+		return (-1);
+	while (envp[i[1]])
+	{
+		if (!ft_strncmp(envp[i[1]], str, pos + 1))
+			return (1);
+		i[1]++;
+	}
+	return (0);
+}
+
+int	ft_export(t_prompt *prompt)
+{
+	int		i[2];
+	int		pos;
+	char	**mtx;
+
+	mtx = ((t_data *)prompt->cmds->content)->full_cmd;
+	if (ft_matrixlen(mtx) >= 2)
+	{
+		i[0] = 1;
+		while (mtx[i[0]])
+		{
+			pos = var_in_envp(mtx[i[0]], prompt->envp, i);
+			if (pos == 1)
+			{
+				free(prompt->envp[i[1]]);
+				prompt->envp[i[1]] = ft_strdup(mtx[i[0]]);
+			}
+			else if (!pos)
+				prompt->envp = ft_extend_matrix(prompt->envp, mtx[i[0]]);
+			i[0]++;
+		}
+	}
+	return (0);
+}

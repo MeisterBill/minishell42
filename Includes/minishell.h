@@ -136,5 +136,7 @@ int 		builtin(t_prompt *prompt, t_list *cmds, int *is_exit, int c_len);
 int			ft_exit(t_list *cmds, int *is_exit);
 /* Implementation of the cd builtin */
 int			ft_cd(t_prompt *prompt);
+/* Implementation of the export builtin */
+int ft_export(t_prompt *prompt);
 
 #endif
