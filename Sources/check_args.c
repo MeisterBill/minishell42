@@ -30,7 +30,7 @@ static void	*ft_parsing(char **matrix, t_prompt *prompt)
 	prompt->cmds = fill_list(matrix, -1);
 	if (!prompt->cmds)
 			return (prompt);
-	i = ft_lstsize(prompt->cmds);
+	i = ft_listsize(prompt->cmds);
 	exit_code = builtin(prompt, prompt->cmds, &is_exit, 0);
 	return (prompt);
 }

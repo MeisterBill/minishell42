@@ -106,6 +106,8 @@ t_list	*ft_listlast(t_list *list);
 void		ft_listadd_back(t_list **list, t_list *new_elem);
 /* Creates new list element allocating with malloc */
 t_list	*ft_listnew(void *content);
+/* Returns number of elements of linked list */
+int			ft_listsize(t_list *list);
 
 /* REDIRECTIONS / APPEND */
 /* Opens a file descriptor with the needed open flags */
@@ -126,5 +128,11 @@ void		handle_sigint(int sig);
 /* HEREDOC */
 /* Retrieves a string from standard input, expanding vars when needed */
 int			get_here_doc(char *str[2], char *aux[2]);
+
+/* BUILTINS */
+/* Handles all builtin functions */
+int 		builtin(t_prompt *prompt, t_list *cmds, int *is_exit, int c_len);
+/* Implementation of the exit builtin */
+int			ft_exit(t_list *cmd, int *is_exit);
 
 #endif

@@ -42,7 +42,7 @@ t_list	*ft_listnew(void *content)
 	return (list);
 }
 
-int	ft_lstsize(t_list *list)
+int	ft_listsize(t_list *list)
 {
 	int	size;
 

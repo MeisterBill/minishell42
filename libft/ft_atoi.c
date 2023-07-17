@@ -1,5 +1,10 @@
 #include "libft.h"
 
+int	ft_isdigit(int n)
+{
+	return (n >= 48 && n <= 57);
+}
+
 int ft_isspace(char c)
 {
 	if ((c >= 9 && c <= 13) || c == ' ')
