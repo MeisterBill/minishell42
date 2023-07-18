@@ -68,10 +68,10 @@ void	get_cmd(t_prompt *prompt, t_list *cmds, char **s, char *path)
 	if (!is_builtin(cnt) && cnt && cnt->full_cmd && dir)
 		ft_print_errors(IS_DIR, *cnt->full_cmd, 126);
 	else if (!is_builtin(cnt) && cnt && cnt->full_path && \
-					 access(cnt->full_path, F_OK) == -1)
+		access(cnt->full_path, F_OK) == -1)
 		ft_print_errors(NODIR, cnt->full_path, 127);
 	else if (!is_builtin(cnt) && cnt && cnt->full_path && \
-					 access(cnt->full_path, X_OK) == -1)
+		access(cnt->full_path, X_OK) == -1)
 		ft_print_errors(NOPERM, cnt->full_path, 126);
 	if (dir)
 		closedir(dir);
