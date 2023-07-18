@@ -31,6 +31,7 @@ SRCS		=	Sources/main.c \
 					Sources/redirections.c \
 					Sources/signal.c \
 					Sources/heredoc.c \
+					Sources/get_cmd.c \
 
 
 OBJS		=	$(SRCS:.c=.o)

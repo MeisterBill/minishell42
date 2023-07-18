@@ -141,4 +141,12 @@ int			ft_export(t_prompt *prompt);
 /* Implementation of the unset builtin */
 int			ft_unset(t_prompt *prompt);
 
+/* EXECUTION */
+/* Executes a non-builtin command */
+void		*exec_cmd(t_prompt *prompt, t_list *cmds);
+/* Checks if a command is in the PATH variable and retrieves the full_path */
+void		get_cmd(t_prompt *prompt, t_list *cmds, char **s, char *path);
+
+
+
 #endif

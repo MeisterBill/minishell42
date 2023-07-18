@@ -31,6 +31,33 @@ int	builtin(t_prompt *prompt, t_list *cmds, int *is_exit, int c_len)
 	return (exit_code);
 }
 
+int	is_builtin(t_data	*content)
+{
+	int	l;
+
+	if (!content->full_cmd)
+		return (0);
+	if ((content->full_cmd && ft_strchr(*content->full_cmd, '/')) || (content->full_path && \
+		ft_strchr(content->full_path, '/')))
+		return (0);
+	l = ft_strlen(*content->full_cmd);
+	if (!ft_strncmp(*content->full_cmd, "pwd", l) && l == 3)
+		return (1);
+	if (!ft_strncmp(*content->full_cmd, "env", l) && l == 3)
+		return (1);
+	if (!ft_strncmp(*content->full_cmd, "cd", l) && l == 2)
+		return (1);
+	if (!ft_strncmp(*content->full_cmd, "export", l) && l == 6)
+		return (1);
+	if (!ft_strncmp(*content->full_cmd, "unset", l) && l == 5)
+		return (1);
+	if (!ft_strncmp(*content->full_cmd, "echo", l) && l == 4)
+		return (1);
+	if (!ft_strncmp(*content->full_cmd, "exit", l) && l == 4)
+		return (1);
+	return (0);
+}
+
 int	ft_pwd(void)
 {
 	char	*buffer;
@@ -51,7 +78,7 @@ static void	change_error_cd(char **str[2])
 	if (!str[0][1] && str[1][0] && !str[1][0][0])
 	{
 		exit_code = 1;
-		ft_putstr_fd("noobshell: HOME not set\n", 2);
+		ft_putstr_fd("noobshell: HOME not set\content", 2);
 	}
 	if (str[1][0] && !str[0][1])
 		exit_code = chdir(str[1][0]) == -1;
