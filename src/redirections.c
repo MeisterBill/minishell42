@@ -29,7 +29,6 @@ t_data	*get_out_append(t_data *content, char **matrix, int *i)
 {
 	char	*nl;
 	int		flags[2];
-	int		test;
 
 	flags[0] = 1;
 	flags[1] = 1;
@@ -47,7 +46,6 @@ t_data	*get_out_append(t_data *content, char **matrix, int *i)
 		}
 		else
 			g_exitcode = 1;
-			test = 1;
 	}
 	return (content);
 }
