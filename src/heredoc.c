@@ -4,7 +4,7 @@ static char	*get_here_str(char *str[2], size_t len, char *limit, char *warn)
 {
 	char	*tmp;
 
-	while (/*exit_code != 130 && */(!str[0] || ft_strncmp(str[0], limit, len) || ft_strlen(limit) != len))
+	while (g_exitcode != 130 && (!str[0] || ft_strncmp(str[0], limit, len) || ft_strlen(limit) != len))
 	{
 		tmp = str[1];
 		str[1] = ft_strjoin(str[1], str[0]);
@@ -29,7 +29,7 @@ int	get_here_doc(char *str[2], char *aux[2])
 {
 	int	fd[2];
 
-	//exit_code = 0;
+	g_exitcode = 0;
 	if (pipe(fd) == -1)
 	{
 		ft_print_errors(PIPERR, NULL, 1);
@@ -39,11 +39,10 @@ int	get_here_doc(char *str[2], char *aux[2])
 	write(fd[WRITE_END], str[1], ft_strlen(str[1]));
 	free(str[1]);
 	close(fd[WRITE_END]);
-	/*if (exit_code == 130)
+	if (g_exitcode == 130)
 	{
 		close(fd[READ_END]);
 		return (-1);
 	}
-	*/
 	return (fd[READ_END]);
 }

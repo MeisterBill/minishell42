@@ -43,10 +43,10 @@ t_data	*get_out_append(t_data *content, char **matrix, int *i)
 		if (content->outfile != -1)
 		{
 			ft_putendl_fd(nl, 2);
-			//exit_code = 2;
+			g_exitcode = 2;
 		}
 		else
-			//exit_code = 1;
+			g_exitcode = 1;
 			test = 1;
 	}
 	return (content);
@@ -56,7 +56,6 @@ t_data *get_outfile(t_data *content, char **matrix, int *i)
 {
 	char	*nl;
 	int		flags[2];
-	int		test;
 
 	flags[0] = 1;
 	flags[1] = 0;
@@ -70,11 +69,10 @@ t_data *get_outfile(t_data *content, char **matrix, int *i)
 		if (content->outfile != -1)
 		{
 			ft_putendl_fd(nl, 2);
-			//exit_code = 2;
+			g_exitcode = 2;
 		}
 		else
-			//exit_code = 1;
-			test = 1;
+			g_exitcode = 1;
 	}
 	return (content);
 }
@@ -102,7 +100,7 @@ t_data	*get_in_heredoc(t_data *content, char **matrix, int *i)
 		if (content->infile != -1)
 		{
 			ft_putendl_fd(nl, 2);
-			//exit_code = 2;
+			g_exitcode = 2;
 		}
 	}
 	return (content);
@@ -112,7 +110,6 @@ t_data *get_infile(t_data *content, char **matrix, int *i)
 {
 	char	*nl;
 	int		flags[2];
-	int		test;
 
 	flags[0] = 0;
 	flags[1] = 0;
@@ -126,11 +123,10 @@ t_data *get_infile(t_data *content, char **matrix, int *i)
 		if (content->infile != -1)
 		{
 			ft_putendl_fd(nl, 2);
-			//exit_code = 2;
+			g_exitcode = 2;
 		}
 		else
-			//exit_code = 1;
-			test = 1;
+			g_exitcode = 1;
 	}
 	return (content);
 }

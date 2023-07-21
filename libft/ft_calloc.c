@@ -17,3 +17,19 @@ void	*ft_calloc(size_t count, size_t size)
 	ft_bzero(result, count * size);
 	return (result);
 }
+
+int	ft_countchar(char *str, char c)
+{
+	int count;
+
+	if (!str)
+		return (0);
+	count = 0;
+	while (*str)
+	{
+		if (*str == c)
+			count++;
+		str++;
+	}
+	return (count);
+}

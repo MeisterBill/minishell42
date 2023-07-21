@@ -5,6 +5,7 @@
 #  define BUFFER_SIZE 42
 # endif
 
+# include "../Includes/minishell.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -22,7 +23,7 @@ int			ft_isspace(char c);
 /* CALLOC */
 /* Reserves count blocks of size bits of memory */
 void		*ft_calloc(size_t count, size_t size);
-
+int			ft_countchar(char *str, char c);
 /* Writes n zeroes to the string s */
 void		ft_bzero(void *s, size_t n);
 
@@ -97,11 +98,13 @@ void		ft_free_matrix(char ***matrix);
 char		**ft_dup_matrix(char **matrix);
 /* Replaces n-th line of original matrix with new matrix */
 char		**ft_replace_in_matrix(char ***original, char **new, int n);
+/* Writes char ** to given fd (prints \n per line in char ** if nl != 0) */
+int			ft_putmatrix_fd(char **matrix, int nl, int fd);
 
-		/* GET_NEXT_LINE */
-		char *ft_readfile_and_pushtostash(int fd, char *stash);
-char *ft_checkbackn_and_pushtoline(char *stash);
-char *ft_push_cutstash_to_nextstash(char *stash);
-char *get_next_line(int fd);
+/* GET_NEXT_LINE */
+char		*ft_readfile_and_pushtostash(int fd, char *stash);
+char		*ft_checkbackn_and_pushtoline(char *stash);
+char		*ft_push_cutstash_to_nextstash(char *stash);
+char		*get_next_line(int fd);
 
 #endif

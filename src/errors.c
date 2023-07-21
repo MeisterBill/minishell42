@@ -1,11 +1,8 @@
 #include "../Includes/minishell.h"
 
-//extern int exit_code;
-
 void	*ft_print_errors(int err_type, char *str, int exitcode)
 {
-	//exit_code = exitcode;
-	exitcode = 0;
+	g_exitcode = exitcode;
 	if (err_type == QUOTE)
 		ft_putstr_fd("noobshell: error while looking for matching quote\n", 2);
 	else if (err_type == NODIR)
@@ -98,4 +95,33 @@ int	ft_exit(t_list *cmds, int *is_exit)
 	}
 	status[0] %= 256 + 256 * (status[0] < 0);
 	return (status[0]);
+}
+
+int	ft_echo(t_list *cmds)
+{
+	int			newline;
+	int			i[2];
+	char		**matrix;
+	t_data	*cnt;
+
+	i[0] = 0;
+	i[1] = 0;
+	newline = 1;
+	cnt = cmds->content;
+	matrix = cnt->full_cmd;
+	while (matrix && matrix[++i[0]])
+	{
+		if (!i[1] && !ft_strncmp(matrix[i[0]], "-n", 2) &&
+				(ft_countchar(matrix[i[0]], 'n') ==
+				 (int)(ft_strlen(matrix[i[0]]) - 1)))
+			newline = 0;
+		else
+		{
+			i[1] = 1;
+			ft_putstr_fd(matrix[i[0]], 1);
+			if (matrix[i[0] + 1])
+				ft_putchar_fd(' ', 1);
+		}
+	}
+	return (write(1, "\n", newline) == 2);
 }

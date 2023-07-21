@@ -1,7 +1,5 @@
 #include "../Includes/minishell.h"
 
-extern int	exit_code;
-
 static char	**split_all(char **matrix, t_prompt *prompt)
 {
 		int		i;
@@ -31,14 +29,25 @@ static void	*ft_parsing(char **matrix, t_prompt *prompt)
 	if (!prompt->cmds)
 			return (prompt);
 	i = ft_listsize(prompt->cmds);
-	exit_code = builtin(prompt, prompt->cmds, &is_exit, 0);
+	g_exitcode = builtin(prompt, prompt->cmds, &is_exit, 0);
+	while (i-- > 0)
+			waitpid(-1, &g_exitcode, 0);
+	if (!is_exit && g_exitcode == 13)
+			g_exitcode = 0;
+	if (g_exitcode > 255)
+			g_exitcode = g_exitcode / 255;
+	if (matrix && is_exit)
+	{
+			ft_listclear(&prompt->cmds, free_content);
+			return (NULL);
+	}
 	return (prompt);
 }
 
 void	*checkargs_exec(char *output, t_prompt *prompt)
 {
 	char		**matrix;
-	//t_data	*data;
+	t_data	*cnt;
 
 	if (!output)
 	{
@@ -54,5 +63,12 @@ void	*checkargs_exec(char *output, t_prompt *prompt)
 	if (!matrix)
 		return ("");
 	prompt = ft_parsing(matrix, prompt);
+	if (prompt && prompt->cmds)
+		cnt = prompt->cmds->content;
+	if (prompt && prompt->cmds && cnt && cnt->full_cmd && ft_listsize(prompt->cmds) == 1)
+		prompt->envp = ft_setenv("_", cnt->full_cmd[ft_matrixlen(cnt->full_cmd) - 1], \
+			prompt->envp, 1);
+	if (prompt && prompt->cmds)
+		ft_listclear(&prompt->cmds, free_content);
 	return (prompt);
 }

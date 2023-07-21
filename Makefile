@@ -1,55 +1,39 @@
-NAME		=	minishell
+# Make variables
+CFLAGS = -Wall -Wextra -Werror -MD -g3
+CC = gcc
+LIBFT = libft/libft.a
+NAME = minishell
 
-HEADER		=	./Includes/
+SRC = check_args.c builtins.c env.c errors.c			\
+	  exec_cmd.c exec.c fill_list.c				\
+	  get_cmd.c heredoc.c linked_list1.c main.c prompt.c		\
+	  redir_pipe.c redirections.c signal.c	\
+	  tokenize.c trim_quotes.c vars_path.c
 
-LIBFT		=	libft/libft.a
+OBJ = $(SRC:.c=.o)
 
-CC			=	gcc
+# Cible par défaut
+all: $(NAME)
 
-CFLAGS		=	-Werror -Wall -Wextra -g -I $(HEADER)
+# Création de l'exécutable
+$(NAME): $(LIBFT) $(OBJ)
+	@$(CC) -L /usr/local/opt/readline/lib -I /usr/local/opt/readline/include -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include $(CFLAGS) $(OBJ) $(LIBFT) -lreadline -o $@
 
-LDLIBS   = -L/Users/Arthur/.brew/Cellar/readline/8.2.1 -lreadline
+# Compilation des fichiers sources en fichiers objets
+%.o: src/%.c
+	@$(CC) -I ~/.brew/opt/readline/include -I /usr/local/opt/readline/include $(CFLAGS) -c $< -o $@
 
-LDFLAGS = -L/Users/Arthur/.brew/Cellar/readline/8.2.1
+# Création de l'archive statique libft.a
+$(LIBFT):
+	@make -C libft
 
-CPPFLAGS = -I/Users/Arthur/.brew/Cellar/readline/8.2.1/include
+clean:
+	@make clean -C libft
+	@$(RM) $(OBJ) $(OBJ:.o=.d)
 
+fclean: clean
+	@$(RM) $(NAME) $(LIBFT)
 
-SRCS		=	Sources/main.c \
-					Sources/builtins.c \
-					Sources/env.c \
-					Sources/errors.c \
-					Sources/exec_cmd.c \
-					Sources/prompt.c \
-					Sources/check_args.c \
-					Sources/tokenize.c \
-					Sources/vars_path.c \
-					Sources/redir_pipe.c \
-					Sources/fill_list.c \
-					Sources/trim_quotes.c \
-					Sources/linked_list1.c \
-					Sources/redirections.c \
-					Sources/signal.c \
-					Sources/heredoc.c \
-					Sources/get_cmd.c \
+re: fclean all
 
-
-OBJS		=	$(SRCS:.c=.o)
-
-all			:	$(NAME)
-
-$(NAME)		:	$(OBJS) $(LIBFT) $(HEADER)
-				$(CC) $(CFLAGS) $(LDFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME) $(LIBFT) $(LDLIBS)
-
-$(LIBFT)	:
-				make -C ./libft
-
-clean		:
-				rm -rf $(OBJS)
-				make clean -C ./libft
-
-fclean		:	clean
-				rm $(NAME)
-				make fclean -C ./libft
-
-re			:	fclean all
+.PHONY: all clean fclean re

@@ -43,8 +43,8 @@ static char	*replace_var_value(char *str, int i, t_prompt *prompt)
 										ft_strchars_i(&str[i], "\"\'$|>< "));
 	if (!var_value && str[i] == '$')
 		var_value = ft_itoa(prompt->pid);
-	//else if (!var_value && str[i] == '?')
-	//	var_value = ft_itoa(exit_code);
+	else if (!var_value && str[i] == '?')
+		var_value = ft_itoa(g_exitcode);
 	pre_and_var = ft_strjoin(tmp, var_value);
 	free(tmp);
 	tmp = ft_strjoin(pre_and_var, &str[i + endchar_pos]);

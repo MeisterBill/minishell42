@@ -1,7 +1,5 @@
 #include "../Includes/minishell.h"
 
-extern int exit_code;
-
 static char	*find_command(char **env_path, char *cmd, char *full_path)
 {
 	char *tmp;
@@ -83,5 +81,18 @@ void	*exec_cmd(t_prompt *prompt, t_list *cmds)
 	int	fd[2];
 
 	get_cmd(prompt, cmds, NULL, NULL);
+	if (pipe(fd) == -1)
+		return (ft_print_errors(PIPERR, NULL, 1));
+	if (!check_to_fork(prompt, cmds, fd))
+		return (NULL);
+	close(fd[WRITE_END]);
+	if (cmds->next && !((t_data *)cmds->next->content)->infile)
+		((t_data *)cmds->next->content)->infile = fd[READ_END];
+	else
+		close(fd[READ_END]);
+	if (((t_data *)cmds->content)->infile > 2)
+		close(((t_data *)cmds->content)->infile);
+	if (((t_data *)cmds->content)->outfile > 2)
+		close(((t_data *)cmds->content)->outfile);
 	return (NULL);
 }

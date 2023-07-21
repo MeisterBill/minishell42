@@ -11,6 +11,8 @@
 # include <dirent.h>
 # include <sys/ioctl.h>
 
+extern int	g_exitcode;
+
 # define READ_END 0
 # define WRITE_END 1
 
@@ -19,14 +21,7 @@ typedef struct s_list
 {
 	void					*content;
 	struct s_list	*next;
-} t_list;
-
-/* Vector with x and y coordinates */
-typedef struct s_vector
-{
-	int	x;
-	int	y;
-} t_vector;
+}	t_list;
 
 /* Data structure for prompt + env + command linked list */
 typedef struct s_prompt
@@ -108,6 +103,8 @@ void		ft_listadd_back(t_list **list, t_list *new_elem);
 t_list	*ft_listnew(void *content);
 /* Returns number of elements of linked list */
 int			ft_listsize(t_list *list);
+/* Deletes a given element and every element after that */
+void		ft_listclear(t_list **list, void (*del)(void *));
 
 /* REDIRECTIONS / APPEND */
 /* Opens a file descriptor with the needed open flags */
@@ -132,6 +129,8 @@ int			get_here_doc(char *str[2], char *aux[2]);
 /* BUILTINS */
 /* Handles all builtin functions */
 int 		builtin(t_prompt *prompt, t_list *cmds, int *is_exit, int c_len);
+/* Checks if the first element in full_cmd is a builtin */
+int			is_builtin(t_data *cnt);
 /* Implementation of the exit builtin */
 int			ft_exit(t_list *cmds, int *is_exit);
 /* Implementation of the cd builtin */
@@ -140,13 +139,23 @@ int			ft_cd(t_prompt *prompt);
 int			ft_export(t_prompt *prompt);
 /* Implementation of the unset builtin */
 int			ft_unset(t_prompt *prompt);
+/* Implementation of the PWD builtin */
+int			ft_pwd(void);
+/* Implementation of the echo builtin */
+int			ft_echo(t_list *cmds);
 
 /* EXECUTION */
 /* Executes a non-builtin command */
-void		*exec_cmd(t_prompt *prompt, t_list *cmds);
+void 		*exec_cmd(t_prompt *prompt, t_list *cmds);
 /* Checks if a command is in the PATH variable and retrieves the full_path */
 void		get_cmd(t_prompt *prompt, t_list *cmds, char **s, char *path);
-
-
+/* Checks if conditions are met to perform a fork */
+void		*check_to_fork(t_prompt *prompt, t_list *cmds, int fd[2]);
+/* Proper execution of fork */
+void		exec_fork(t_prompt *prompt, t_list *cmds, int fd[2]);
+/* Child process exucting redirections + execution of cmd */
+void		*child_process(t_prompt *prompt, t_list *cmds, int fd[2]);
+/* Execution of command or builtin in child */
+void		child_exec(t_prompt *prompt, t_data *cnt, int l, t_list *cmds);
 
 #endif

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "../Includes/minishell.h"
 
-//extern int exit_code;
+int	g_exitcode = 0;
 
 static void	ft_getshellpid(t_prompt *prompt)
 {
@@ -67,7 +67,7 @@ static t_prompt	init_prompt(char **argv, char **envp)
 	str = NULL;
 	prompt.cmds = NULL;
 	prompt.envp = ft_dup_matrix(envp);
-	//exit_code = 0;
+	g_exitcode = 0;
 	ft_getshellpid(&prompt);
 	prompt = init_vars(prompt, str, argv);
 	return (prompt);
@@ -78,7 +78,6 @@ int	main(int ac, char **argv, char **envp)
 	t_prompt	prompt;
 	char		*str;
 	char		*output;
-	int			test;
 
 	prompt = init_prompt(argv, envp);
 	while (argv && ac)
@@ -88,8 +87,11 @@ int	main(int ac, char **argv, char **envp)
 		str = ft_getprompt(prompt);
 		if (str)
 			output = readline(str);
+		else
+			output = readline("guest@noobshell $ ");
+		free(str);
 		if (!checkargs_exec(output, &prompt))
-			test = 1;
+			break ;
 	}
-	return (0);
+	exit(g_exitcode);
 }
