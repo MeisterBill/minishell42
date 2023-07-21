@@ -20,16 +20,16 @@ extern int	g_exitcode;
 typedef struct s_list
 {
 	void					*content;
-	struct s_list	*next;
+	struct s_list			*next;
 }	t_list;
 
 /* Data structure for prompt + env + command linked list */
 typedef struct s_prompt
 {
 	t_list	*cmds;
-	char		**envp;
-	pid_t		pid;
-} t_prompt;
+	char	**envp;
+	pid_t	pid;
+}	t_prompt;
 
 /* General data structure containing data for execution */
 typedef struct s_data
@@ -38,7 +38,7 @@ typedef struct s_data
 	char	*full_path;
 	int		infile;
 	int		outfile;
-} t_data;
+}	t_data;
 
 /* Easier error managment */
 enum e_mini_error
@@ -67,7 +67,7 @@ void	free_content(void *contentt);
 char	*ft_getenv(char *var, char **envp, int n);
 /* Sets a new environment variable or changes the value of an existing one */
 char	**ft_setenv(char *var, char *value, char **envp, int n);
-/* Returns a string with user and current directory used as prompt for readline */
+/* Returns a string with current directory used as prompt for readline */
 char	*ft_getprompt(t_prompt prompt);
 
 /* Executes a custom command and saves output to string ending in \n */
@@ -76,41 +76,43 @@ void	exec_custom(char ***output, char *full_path, char *cmd, char **envp);
 /* Parsing and execution of program */
 void	*checkargs_exec(char *output, t_prompt *prompt);
 
-/* Splits command and args into a matrix of tokens, taking quotes into account */
+/* Splits command and args into tokens, taking quotes into account */
 char	**ft_tokenize(char const *str, char *set);
 
 /* Replaces env variables in a string if not in simple quotes */
 char	*handle_vars(char *str, int i, int quotes[2], t_prompt *prompt);
 
 /* Replaces "~" to home directory in a string if not in quotes */
-char		*handle_path(char *str, int i, int quotes[2], char *path_var);
+char	*handle_path(char *str, int i, int quotes[2], char *path_var);
 
-/* Copy of ft_split but handles pipe and redirections as separators and takes quotes into account */
-char		**handle_pipe_redir(char const *str, char *set);
+/* Copy of ft_split but handles pipe and redirections as separators and takes
+quotes into account */
+char	**handle_pipe_redir(char const *str, char *set);
 
-/* Replaces the matrix with all commands and args into a linked list with this same information */
+/* Replaces the matrix with all commands and args into a linked list with this
+same information */
 t_list	*fill_list(char **matrix, int i);
 
 /* Trims all needed quotes from the original input */
-char		*trim_quotes(char const *str, int single, int doubleq);
+char	*trim_quotes(char const *str, int single, int doubleq);
 
 /* LINKED LISTS */
 /* Retrieves last element of the list */
 t_list	*ft_listlast(t_list *list);
 /* Adds new element at the end of the linked list */
-void		ft_listadd_back(t_list **list, t_list *new_elem);
+void	ft_listadd_back(t_list **list, t_list *new_elem);
 /* Creates new list element allocating with malloc */
 t_list	*ft_listnew(void *content);
 /* Returns number of elements of linked list */
-int			ft_listsize(t_list *list);
+int		ft_listsize(t_list *list);
 /* Deletes a given element and every element after that */
-void		ft_listclear(t_list **list, void (*del)(void *));
+void	ft_listclear(t_list **list, void (*del)(void *));
 
 /* REDIRECTIONS / APPEND */
 /* Opens a file descriptor with the needed open flags */
-int			get_fd(int oldfd, char *path, int flags[2]);
+int		get_fd(int oldfd, char *path, int flags[2]);
 /* Tries to open proper file as outfile (>> case) */
-t_data *get_out_append(t_data *content, char **matrix, int *i);
+t_data	*get_out_append(t_data *content, char **matrix, int *i);
 /* Tries to open proper file as outfile (> case) */
 t_data	*get_outfile(t_data *content, char **matrix, int *i);
 /* Tries to open proper file as infile (< case) */
@@ -120,42 +122,42 @@ t_data	*get_in_heredoc(t_data *content, char **matrix, int *i);
 
 /* SIGNALS */
 /* Function to handle SIGINT signals for main process */
-void		handle_sigint(int sig);
+void	handle_sigint(int sig);
 
 /* HEREDOC */
 /* Retrieves a string from standard input, expanding vars when needed */
-int			get_here_doc(char *str[2], char *aux[2]);
+int		get_here_doc(char *str[2], char *aux[2]);
 
 /* BUILTINS */
 /* Handles all builtin functions */
-int 		builtin(t_prompt *prompt, t_list *cmds, int *is_exit, int c_len);
+int		builtin(t_prompt *prompt, t_list *cmds, int *is_exit, int c_len);
 /* Checks if the first element in full_cmd is a builtin */
-int			is_builtin(t_data *cnt);
+int		is_builtin(t_data *cnt);
 /* Implementation of the exit builtin */
-int			ft_exit(t_list *cmds, int *is_exit);
+int		ft_exit(t_list *cmds, int *is_exit);
 /* Implementation of the cd builtin */
-int			ft_cd(t_prompt *prompt);
+int		ft_cd(t_prompt *prompt);
 /* Implementation of the export builtin */
-int			ft_export(t_prompt *prompt);
+int		ft_export(t_prompt *prompt);
 /* Implementation of the unset builtin */
-int			ft_unset(t_prompt *prompt);
+int		ft_unset(t_prompt *prompt);
 /* Implementation of the PWD builtin */
-int			ft_pwd(void);
+int		ft_pwd(void);
 /* Implementation of the echo builtin */
-int			ft_echo(t_list *cmds);
+int		ft_echo(t_list *cmds);
 
 /* EXECUTION */
 /* Executes a non-builtin command */
-void 		*exec_cmd(t_prompt *prompt, t_list *cmds);
+void	*exec_cmd(t_prompt *prompt, t_list *cmds);
 /* Checks if a command is in the PATH variable and retrieves the full_path */
-void		get_cmd(t_prompt *prompt, t_list *cmds, char **s, char *path);
+void	get_cmd(t_prompt *prompt, t_list *cmds, char **s, char *path);
 /* Checks if conditions are met to perform a fork */
-void		*check_to_fork(t_prompt *prompt, t_list *cmds, int fd[2]);
+void	*check_to_fork(t_prompt *prompt, t_list *cmds, int fd[2]);
 /* Proper execution of fork */
-void		exec_fork(t_prompt *prompt, t_list *cmds, int fd[2]);
+void	exec_fork(t_prompt *prompt, t_list *cmds, int fd[2]);
 /* Child process exucting redirections + execution of cmd */
-void		*child_process(t_prompt *prompt, t_list *cmds, int fd[2]);
+void	*child_process(t_prompt *prompt, t_list *cmds, int fd[2]);
 /* Execution of command or builtin in child */
-void		child_exec(t_prompt *prompt, t_data *cnt, int l, t_list *cmds);
+void	child_exec(t_prompt *prompt, t_data *cnt, int l, t_list *cmds);
 
 #endif

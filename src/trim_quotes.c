@@ -42,7 +42,8 @@ char	*trim_quotes(char const *str, int single, int doubleq)
 	{
 		single = (single + (!doubleq && str[i[0]] == '\'')) % 2;
 		doubleq = (doubleq + (!single && str[i[0]] == '\"')) % 2;
-		if ((str[i[0]] != '\"' || single) && (str[i[0]] != '\'' || doubleq) && ++i[1] >= 0)
+		if ((str[i[0]] != '\"' || single) && (str[i[0]] != '\'' || \
+		doubleq) && ++i[1] >= 0)
 			trimmed[i[1]] = str[i[0]];
 		i[0]++;
 	}

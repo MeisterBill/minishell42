@@ -46,7 +46,7 @@ static void	*child_redir(t_list *cmds, int fd[2])
 void	*child_process(t_prompt *prompt, t_list *cmds, int fd[2])
 {
 	t_data	*cnt;
-	int			l;
+	int		l;
 
 	cnt = cmds->content;
 	l = 0;
@@ -61,7 +61,7 @@ void	*child_process(t_prompt *prompt, t_list *cmds, int fd[2])
 
 void	exec_fork(t_prompt *prompt, t_list *cmds, int fd[2])
 {
-	pid_t pid;
+	pid_t	pid;
 
 	pid = fork();
 	if (pid < 0)
@@ -77,7 +77,7 @@ void	exec_fork(t_prompt *prompt, t_list *cmds, int fd[2])
 void	*check_to_fork(t_prompt *prompt, t_list *cmds, int fd[2])
 {
 	t_data	*cnt;
-	DIR			*dir;
+	DIR		*dir;
 
 	cnt = cmds->content;
 	dir = NULL;
@@ -85,7 +85,8 @@ void	*check_to_fork(t_prompt *prompt, t_list *cmds, int fd[2])
 		dir = opendir(*cnt->full_cmd);
 	if (cnt->infile == -1 || cnt->outfile == -1)
 		return (NULL);
-	if ((cnt->full_path && access(cnt->full_path, X_OK) == 0) || is_builtin(cnt))
+	if ((cnt->full_path && access(cnt->full_path, X_OK) == 0) \
+	|| is_builtin(cnt))
 		exec_fork(prompt, cmds, fd);
 	else if (!is_builtin(cnt) && ((cnt->full_path && \
 		!access(cnt->full_path, F_OK)) || dir))

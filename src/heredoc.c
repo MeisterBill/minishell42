@@ -4,7 +4,8 @@ static char	*get_here_str(char *str[2], size_t len, char *limit, char *warn)
 {
 	char	*tmp;
 
-	while (g_exitcode != 130 && (!str[0] || ft_strncmp(str[0], limit, len) || ft_strlen(limit) != len))
+	while (g_exitcode != 130 && (!str[0] || \
+	ft_strncmp(str[0], limit, len) || ft_strlen(limit) != len))
 	{
 		tmp = str[1];
 		str[1] = ft_strjoin(str[1], str[0]);
@@ -14,7 +15,7 @@ static char	*get_here_str(char *str[2], size_t len, char *limit, char *warn)
 		if (!str[0])
 		{
 			printf("%s (wanted `%s\')\n", warn, limit);
-			break;
+			break ;
 		}
 		tmp = str[0];
 		str[0] = ft_strjoin(str[0], "\n");

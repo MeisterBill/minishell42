@@ -18,8 +18,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
 
 	if (to_find[0] == '\0')
 		return ((char *)str);
@@ -34,7 +34,7 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 				if (str[i + j] == to_find[j] && to_find[j + 1] == '\0')
 					return ((char *)&str[i]);
 				else if (str[i + j] != to_find[j])
-					break;
+					break ;
 				j++;
 			}
 		}
@@ -45,9 +45,9 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 
 char	*ft_strtrim(char const *str, char const *to_trim)
 {
-	int len;
-	int i;
-	int j;
+	int	len;
+	int	i;
+	int	j;
 
 	if (!str)
 		return (0);
@@ -64,10 +64,10 @@ char	*ft_strtrim(char const *str, char const *to_trim)
 	return (ft_substr(str, i, len + 1));
 }
 
-char *ft_substr(char const *str, unsigned int start, size_t len)
+char	*ft_substr(char const *str, unsigned int start, size_t len)
 {
 	size_t	str_len;
-	char		*res;
+	char	*res;
 	size_t	i;
 
 	if (!str)
@@ -93,9 +93,9 @@ char *ft_substr(char const *str, unsigned int start, size_t len)
 	return (res);
 }
 
-size_t ft_strlen(const char *str)
+size_t	ft_strlen(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str)

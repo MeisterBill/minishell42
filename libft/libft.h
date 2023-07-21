@@ -52,7 +52,7 @@ int			ft_putstr_fd(char *str, int fd);
 char		**ft_split(char const *s, char c);
 
 /* STR_X */
-size_t	ft_strlen(const char *str);
+size_t		ft_strlen(const char *str);
 
 /* Looks for a specific character inside a given string,
  * returning pointer to it*/
@@ -61,11 +61,12 @@ char		*ft_strchr(const char *str, int n);
 /* Looks for a specific character inside a given string, returning its index */
 int			ft_strchr_index(const char *str, int n);
 
-/* Looks for a specific set of chars inside a given string, returning its index */
+/* Looks for a specific set of chars inside a given string, returning its
+index */
 int			ft_strchars_i(const char *s, char *set);
 
 /* Copies size - 1 bytes from a source string to a destination string */
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 
 /* Saves enough space and duplicates a string */
 char		*ft_strdup(const char *str);

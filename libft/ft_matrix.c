@@ -2,7 +2,7 @@
 
 int	ft_matrixlen(char **matrix)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (matrix && matrix[i])
@@ -12,7 +12,7 @@ int	ft_matrixlen(char **matrix)
 
 void	ft_free_matrix(char ***matrix)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (matrix && matrix[0] && matrix[0][i])
@@ -29,9 +29,9 @@ void	ft_free_matrix(char ***matrix)
 
 char	**ft_dup_matrix(char **matrix)
 {
-	char **res;
-	int nb_rows;
-	int i;
+	char	**res;
+	int		nb_rows;
+	int		i;
 
 	i = 0;
 	nb_rows = ft_matrixlen(matrix);
@@ -83,15 +83,16 @@ char	**ft_extend_matrix(char **ex_matrix, char *to_add)
 
 char	**ft_replace_in_matrix(char ***original, char **to_add, int n)
 {
-	char **new_matrix;
-	int i[3];
+	char	**new_matrix;
+	int		i[3];
 
 	i[0] = -1;
 	i[1] = -1;
 	i[2] = -1;
 	if (!original || !*original || n < 0 || n >= ft_matrixlen(*original))
 		return (NULL);
-	new_matrix = ft_calloc(ft_matrixlen(*original) + ft_matrixlen(to_add), sizeof(char *));
+	new_matrix = ft_calloc(ft_matrixlen(*original) + ft_matrixlen(to_add), \
+	sizeof(char *));
 	while (new_matrix && original[0][++i[0]])
 	{
 		if (i[0] != n)

@@ -16,10 +16,10 @@ char	*ft_strchr(const char *str, int n)
 	return (NULL);
 }
 
-int ft_strchr_index(const char *str, int n)
+int	ft_strchr_index(const char *str, int n)
 {
-	unsigned char n_unsigned;
-	int i;
+	unsigned char	n_unsigned;
+	int				i;
 
 	i = 0;
 	if (!str)
@@ -38,8 +38,8 @@ int ft_strchr_index(const char *str, int n)
 
 char	*ft_strdup(const char *str)
 {
-	char *res;
-	size_t size;
+	char	*res;
+	size_t	size;
 
 	if (!str)
 		return (NULL);
@@ -53,10 +53,10 @@ char	*ft_strdup(const char *str)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int len_s1;
-	int len_s2;
-	char *res;
-	int i;
+	int		len_s1;
+	int		len_s2;
+	char	*res;
+	int		i;
 
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);
@@ -78,10 +78,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (res);
 }
 
-size_t ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	unsigned int i;
-	size_t size_src;
+	unsigned int	i;
+	size_t			size_src;
 
 	i = 0;
 	if (src == NULL)

@@ -2,8 +2,8 @@
 
 static char	*find_command(char **env_path, char *cmd, char *full_path)
 {
-	char *tmp;
-	int i;
+	char	*tmp;
+	int		i;
 
 	i = -1;
 	full_path = NULL;
@@ -18,7 +18,7 @@ static char	*find_command(char **env_path, char *cmd, char *full_path)
 		if (!full_path)
 			return (NULL);
 		if (access(full_path, F_OK) == 0)
-			break;
+			break ;
 	}
 	if (!env_path || !env_path[i])
 	{
@@ -31,7 +31,7 @@ static char	*find_command(char **env_path, char *cmd, char *full_path)
 static DIR	*cmd_checks(t_prompt *prompt, t_list *cmds, char ***s, char *path)
 {
 	t_data	*cnt;
-	DIR			*dir;
+	DIR		*dir;
 
 	dir = NULL;
 	cnt = cmds->content;
@@ -59,7 +59,7 @@ static DIR	*cmd_checks(t_prompt *prompt, t_list *cmds, char ***s, char *path)
 void	get_cmd(t_prompt *prompt, t_list *cmds, char **s, char *path)
 {
 	t_data	*cnt;
-	DIR			*dir;
+	DIR		*dir;
 
 	cnt = cmds->content;
 	dir = cmd_checks(prompt, cmds, &s, path);

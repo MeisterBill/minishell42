@@ -1,22 +1,22 @@
 #include "../Includes/minishell.h"
 
-int	builtin(t_prompt *prompt, t_list *cmds, int *is_exit, int c_len)
+int	builtin(t_prompt *prompt, t_list *cmds, int *is_exit, int l)
 {
-	char **cmd_full;
+	char	**cmd;
 
 	while (cmds)
 	{
-		cmd_full = ((t_data *)cmds->content)->full_cmd;
-		c_len = 0;
-		if (cmd_full)
-			c_len = ft_strlen(*cmd_full);
-		if (cmd_full && !ft_strncmp(*cmd_full, "exit", c_len) && c_len == 4)
+		cmd = ((t_data *)cmds->content)->full_cmd;
+		l = 0;
+		if (cmd)
+			l = ft_strlen(*cmd);
+		if (cmd && !ft_strncmp(*cmd, "exit", l) && l == 4)
 			g_exitcode = ft_exit(cmds, is_exit);
-		else if (!cmds->next && cmd_full && !ft_strncmp(*cmd_full, "cd", c_len) && c_len == 2)
+		else if (!cmds->next && cmd && !ft_strncmp(*cmd, "cd", l) && l == 2)
 			g_exitcode = ft_cd(prompt);
-		else if (!cmds->next && cmd_full && !ft_strncmp(*cmd_full, "export", c_len) && c_len == 6)
+		else if (!cmds->next && cmd && !ft_strncmp(*cmd, "export", l) && l == 6)
 			g_exitcode = ft_export(prompt);
-		else if (!cmds->next && cmd_full && !ft_strncmp(*cmd_full, "unset", c_len) && c_len == 5)
+		else if (!cmds->next && cmd && !ft_strncmp(*cmd, "unset", l) && l == 5)
 			g_exitcode = ft_unset(prompt);
 		else
 		{
@@ -35,7 +35,8 @@ int	is_builtin(t_data	*content)
 
 	if (!content->full_cmd)
 		return (0);
-	if ((content->full_cmd && ft_strchr(*content->full_cmd, '/')) || (content->full_path && \
+	if ((content->full_cmd && ft_strchr(*content->full_cmd, '/')) \
+	|| (content->full_path && \
 		ft_strchr(content->full_path, '/')))
 		return (0);
 	l = ft_strlen(*content->full_cmd);
@@ -92,8 +93,8 @@ static void	change_error_cd(char **str[2])
 
 int	ft_cd(t_prompt *prompt)
 {
-	char **str[2];
-	char *tmp;
+	char	**str[2];
+	char	*tmp;
 
 	g_exitcode = 0;
 	str[0] = ((t_data *)prompt->cmds->content)->full_cmd;

@@ -20,7 +20,7 @@ void	*ft_calloc(size_t count, size_t size)
 
 int	ft_countchar(char *str, char c)
 {
-	int count;
+	int	count;
 
 	if (!str)
 		return (0);

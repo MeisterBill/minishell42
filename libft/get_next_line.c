@@ -1,9 +1,9 @@
 #include "libft.h"
 
-char *ft_readfile_and_pushtostash(int fd, char *stash)
+char	*ft_readfile_and_pushtostash(int fd, char *stash)
 {
-	int read_bytes;
-	char *buffer;
+	int		read_bytes;
+	char	*buffer;
 
 	if (!stash)
 		stash = ft_calloc(1, 1);
@@ -24,10 +24,10 @@ char *ft_readfile_and_pushtostash(int fd, char *stash)
 	return (stash);
 }
 
-char *ft_checkbackn_and_pushtoline(char *stash)
+char	*ft_checkbackn_and_pushtoline(char *stash)
 {
-	char *line;
-	int i;
+	char	*line;
+	int		i;
 
 	i = 0;
 	if (!stash[i])
@@ -49,11 +49,11 @@ char *ft_checkbackn_and_pushtoline(char *stash)
 	return (line);
 }
 
-char *ft_push_cutstash_to_nextstash(char *stash)
+char	*ft_push_cutstash_to_nextstash(char *stash)
 {
-	int i;
-	int j;
-	char *next_stach;
+	int		i;
+	int		j;
+	char	*next_stach;
 
 	i = 0;
 	while (stash[i] && stash[i] != '\n')
@@ -75,10 +75,10 @@ char *ft_push_cutstash_to_nextstash(char *stash)
 	return (next_stach);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char *stash;
-	char *line;
+	static char	*stash;
+	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX || read(fd, 0, 0) < 0)
 		return (NULL);

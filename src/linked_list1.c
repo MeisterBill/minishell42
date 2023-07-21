@@ -61,7 +61,7 @@ void	ft_listclear(t_list **list, void (*free_fct)(void *))
 	t_list	*tmp;
 
 	if (!list)
-		return;
+		return ;
 	start = *list;
 	tmp = NULL;
 	while (start)

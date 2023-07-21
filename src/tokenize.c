@@ -2,24 +2,24 @@
 
 static int	ft_count_words(const char *str, char *set, int i[2])
 {
-	int	quotes[2];
+	int	q[2];
 
-	quotes[0] = 0;
-	quotes[1] = 0;
+	q[0] = 0;
+	q[1] = 0;
 	while (str[i[0]] != '\0')
 	{
 		if (!ft_strchr(set, str[i[0]]))
 		{
 			i[1]++;
-			while ((!ft_strchr(set, str[i[0]]) || quotes[0]) && str[i[0]] != '\0')
+			while ((!ft_strchr(set, str[i[0]]) || q[0]) && str[i[0]] != '\0')
 			{
-				if (!quotes[1] && (str[i[0]] == '\"' || str[i[0]] == '\''))
-					quotes[1] = str[i[0]];
-				quotes[0] = (quotes[0] + (str[i[0]] == quotes[1])) % 2;
-				quotes[1] *= quotes[0] != 0;
+				if (!q[1] && (str[i[0]] == '\"' || str[i[0]] == '\''))
+					q[1] = str[i[0]];
+				q[0] = (q[0] + (str[i[0]] == q[1])) % 2;
+				q[1] *= q[0] != 0;
 				i[0]++;
 			}
-			if (quotes[0])
+			if (q[0])
 				return (-1);
 		}
 		else
@@ -28,34 +28,34 @@ static int	ft_count_words(const char *str, char *set, int i[2])
 	return (i[1]);
 }
 
-static char	**ft_fill_matrix(char **tokens, char const *output, char *set, int i[3])
+static char	**ft_fill_matrix(char **tok, char const *out, char *set, int i[3])
 {
 	int	out_len;
-	int	quotes[2];
+	int	q[2];
 
-	quotes[0] = 0;
-	quotes[1] = 0;
-	out_len = ft_strlen(output);
-	while (output[i[0]])
+	q[0] = 0;
+	q[1] = 0;
+	out_len = ft_strlen(out);
+	while (out[i[0]])
 	{
-		while (ft_strchr(set, output[i[0]]) && output[i[0]] != '\0')
+		while (ft_strchr(set, out[i[0]]) && out[i[0]] != '\0')
 			i[0]++;
 		i[1] = i[0];
-		while ((!ft_strchr(set, output[i[0]]) || quotes[0] || quotes[1]) && output[i[0]])
+		while ((!ft_strchr(set, out[i[0]]) || q[0] || q[1]) && out[i[0]])
 		{
-			quotes[0] = (quotes[0] + (!quotes[1] && output[i[0]] == '\'')) % 2;
-			quotes[1] = (quotes[1] + (!quotes[0] && output[i[0]] == '\"')) % 2;
+			q[0] = (q[0] + (!q[1] && out[i[0]] == '\'')) % 2;
+			q[1] = (q[1] + (!q[0] && out[i[0]] == '\"')) % 2;
 			i[0]++;
 		}
 		if (i[1] >= out_len)
-			tokens[i[2]++] = "\0";
+			tok[i[2]++] = "\0";
 		else
-			tokens[i[2]++] = ft_substr(output, i[1], i[0] - i[1]);
+			tok[i[2]++] = ft_substr(out, i[1], i[0] - i[1]);
 	}
-	return (tokens);
+	return (tok);
 }
 
-char	**ft_tokenize(char const *output, char *set)
+char	**ft_tokenize(char const *out, char *set)
 {
 	char	**tokens;
 	int		nb_words;
@@ -67,15 +67,15 @@ char	**ft_tokenize(char const *output, char *set)
 	i[2] = 0;
 	counts[0] = 0;
 	counts[1] = 0;
-	if (!output)
+	if (!out)
 		return (NULL);
-	nb_words = ft_count_words(output, set, counts);
+	nb_words = ft_count_words(out, set, counts);
 	if (nb_words == -1)
 		return (NULL);
 	tokens = malloc((nb_words + 1) * sizeof(char *));
 	if (tokens == NULL)
 		return (NULL);
-	tokens = ft_fill_matrix(tokens, output, set, i);
+	tokens = ft_fill_matrix(tokens, out, set, i);
 	tokens[nb_words] = NULL;
 	return (tokens);
 }

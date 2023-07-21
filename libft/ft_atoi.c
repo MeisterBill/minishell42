@@ -5,18 +5,18 @@ int	ft_isdigit(int n)
 	return (n >= 48 && n <= 57);
 }
 
-int ft_isspace(char c)
+int	ft_isspace(char c)
 {
 	if ((c >= 9 && c <= 13) || c == ' ')
 		return (1);
 	return (0);
 }
 
-int ft_atoi(const char *nptr)
+int	ft_atoi(const char *nptr)
 {
-	long long unsigned n;
-	int sign;
-	long long unsigned max;
+	long long unsigned	n;
+	int					sign;
+	long long unsigned	max;
 
 	sign = 1;
 	max = 9223372036854775807;

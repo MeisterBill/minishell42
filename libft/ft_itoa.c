@@ -2,7 +2,7 @@
 
 int	ft_nbrlen(long nb, int base)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (!base)
@@ -29,7 +29,7 @@ static char	*ft_fill_str(char *str, int len, int nb, int nb_cpy)
 	return (str);
 }
 
-static char *ft_allocate_str(char *str, int len, int nb, int nb_cpy)
+static char	*ft_allocate_str(char *str, int len, int nb, int nb_cpy)
 {
 	if (nb >= 0)
 	{
@@ -56,12 +56,11 @@ static char *ft_allocate_str(char *str, int len, int nb, int nb_cpy)
 	return (ft_fill_str(str, len, nb, nb_cpy));
 }
 
-/* Saves the given nb as a string (char array) */
-char *ft_itoa(int nb)
+char	*ft_itoa(int nb)
 {
-	char *str;
-	int len;
-	int nb_cpy;
+	char	*str;
+	int		len;
+	int		nb_cpy;
 
 	nb_cpy = nb;
 	len = ft_nbrlen(nb, 10);

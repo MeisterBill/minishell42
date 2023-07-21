@@ -25,8 +25,8 @@ int	ft_putstr_fd(char *str, int fd)
 
 int	ft_putmatrix_fd(char **matrix, int nl, int fd)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	count = 0;
 	i = 0;

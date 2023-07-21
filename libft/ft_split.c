@@ -25,7 +25,7 @@ static char	**ft_fill_array(char **result, char const *str, char c)
 {
 	size_t	i;
 	size_t	j;
-	int			k;
+	int		k;
 	size_t	str_len;
 
 	i = 0;

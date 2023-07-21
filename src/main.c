@@ -33,36 +33,37 @@ static void	ft_getshellpid(t_prompt *prompt)
 	prompt->pid = pid - 1;
 }
 
-static t_prompt	init_vars(t_prompt prompt, char *str, char **argv)
+static t_prompt	init_vars(t_prompt p, char *str, char **argv)
 {
 	char	*nb_shlvl;
 
 	str = getcwd(NULL, 0);
-	prompt.envp = ft_setenv("PWD", str, prompt.envp, 3);
+	p.envp = ft_setenv("PWD", str, p.envp, 3);
 	free(str);
-	str = ft_getenv("SHLVL", prompt.envp, 5);
+	str = ft_getenv("SHLVL", p.envp, 5);
 	if (!str || ft_atoi(str) <= 0)
 		nb_shlvl = ft_strdup("1");
 	else
 		nb_shlvl = ft_itoa(ft_atoi(str) + 1);
 	free(str);
-	prompt.envp = ft_setenv("SHLVL", nb_shlvl, prompt.envp, 5);
+	p.envp = ft_setenv("SHLVL", nb_shlvl, p.envp, 5);
 	free(nb_shlvl);
-	str = ft_getenv("PATH", prompt.envp, 4);
+	str = ft_getenv("PATH", p.envp, 4);
 	if (!str)
-		prompt.envp = ft_setenv("PATH", "/usr/local/sbin:/usr/local/bin:/usr/bin:/bin", prompt.envp, 4);
+		p.envp = ft_setenv("PATH", \
+		"/usr/local/sbin:/usr/local/bin:/usr/bin:/bin", p.envp, 4);
 	free(str);
-	str = ft_getenv("_", prompt.envp, 1);
+	str = ft_getenv("_", p.envp, 1);
 	if (!str)
-		prompt.envp = ft_setenv("_", argv[0], prompt.envp, 1);
+		p.envp = ft_setenv("_", argv[0], p.envp, 1);
 	free(str);
-	return (prompt);
+	return (p);
 }
 
 static t_prompt	init_prompt(char **argv, char **envp)
 {
 	t_prompt	prompt;
-	char			*str;
+	char		*str;
 
 	str = NULL;
 	prompt.cmds = NULL;

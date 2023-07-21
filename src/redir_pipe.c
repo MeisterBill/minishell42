@@ -2,24 +2,24 @@
 
 static int	ft_count_words(char *str, char *set, int nwords)
 {
-	int quotes[2];
-	int i;
+	int	q[2];
+	int	i;
 
 	i = 0;
-	quotes[0] = 0;
-	quotes[1] = 0;
+	q[0] = 0;
+	q[1] = 0;
 	while (str && str[i] != '\0')
 	{
 		nwords++;
 		if (!ft_strchr(set, str[i]))
 		{
-			while ((!ft_strchr(set, str[i]) || quotes[0] || quotes[1]) && str[i] != '\0')
+			while ((!ft_strchr(set, str[i]) || q[0] || q[1]) && str[i] != '\0')
 			{
-				quotes[0] = (quotes[0] + (!quotes[1] && str[i] == '\'')) % 2;
-				quotes[1] = (quotes[1] + (!quotes[0] && str[i] == '\"')) % 2;
+				q[0] = (q[0] + (!q[1] && str[i] == '\'')) % 2;
+				q[1] = (q[1] + (!q[0] && str[i] == '\"')) % 2;
 				i++;
 			}
-			if (quotes[0] || quotes[1])
+			if (q[0] || q[1])
 				return (-1);
 		}
 		else
@@ -30,19 +30,19 @@ static int	ft_count_words(char *str, char *set, int nwords)
 
 static char	**ft_fill_matrix(char **tmp_matrix, char *str, char *set, int i[3])
 {
-	int quotes[2];
+	int	q[2];
 
-	quotes[0] = 0;
-	quotes[1] = 0;
+	q[0] = 0;
+	q[1] = 0;
 	while (str && str[i[0]] != '\0')
 	{
 		i[1] = i[0];
 		if (!ft_strchr(set, str[i[0]]))
 		{
-			while ((!ft_strchr(set, str[i[0]]) || quotes[0] || quotes[1]) && str[i[0]])
+			while ((!ft_strchr(set, str[i[0]]) || q[0] || q[1]) && str[i[0]])
 			{
-				quotes[0] = (quotes[0] + (!quotes[1] && str[i[0]] == '\'')) % 2;
-				quotes[1] = (quotes[1] + (!quotes[0] && str[i[0]] == '\"')) % 2;
+				q[0] = (q[0] + (!q[1] && str[i[0]] == '\'')) % 2;
+				q[1] = (q[1] + (!q[0] && str[i[0]] == '\"')) % 2;
 				i[0]++;
 			}
 		}

@@ -2,7 +2,7 @@
 
 int	get_fd(int oldfd, char *file, int flags[2])
 {
-	int fd;
+	int	fd;
 
 	if (oldfd > 2)
 		close(oldfd);
@@ -52,7 +52,7 @@ t_data	*get_out_append(t_data *content, char **matrix, int *i)
 	return (content);
 }
 
-t_data *get_outfile(t_data *content, char **matrix, int *i)
+t_data	*get_outfile(t_data *content, char **matrix, int *i)
 {
 	char	*nl;
 	int		flags[2];
@@ -79,9 +79,9 @@ t_data *get_outfile(t_data *content, char **matrix, int *i)
 
 t_data	*get_in_heredoc(t_data *content, char **matrix, int *i)
 {
-	char *aux[2];
-	char *nl;
-	char *str[2];
+	char	*aux[2];
+	char	*nl;
+	char	*str[2];
 
 	str[0] = NULL;
 	str[1] = NULL;
@@ -106,7 +106,7 @@ t_data	*get_in_heredoc(t_data *content, char **matrix, int *i)
 	return (content);
 }
 
-t_data *get_infile(t_data *content, char **matrix, int *i)
+t_data	*get_infile(t_data *content, char **matrix, int *i)
 {
 	char	*nl;
 	int		flags[2];

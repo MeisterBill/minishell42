@@ -1,6 +1,6 @@
 #include "../Includes/minishell.h"
 
-static char **ft_trim_quotes(char **matrix)
+static char	**ft_trim_quotes(char **matrix)
 {
 	char	**tmp_matrix;
 	char	*tmp;
@@ -39,7 +39,8 @@ static t_data	*fill_content(t_data *content, char **tmp[2], int *i)
 			content = get_out_append(content, tmp[1], i);
 		else if (tmp[0][*i][0] == '>')
 			content = get_outfile(content, tmp[1], i);
-		else if (tmp[0][*i][0] == '<' && tmp[0][*i + 1] && tmp[0][*i + 1][0] == '<')
+		else if (tmp[0][*i][0] == '<' && tmp[0][*i + 1] && \
+		tmp[0][*i + 1][0] == '<')
 			content = get_in_heredoc(content, tmp[1], i);
 		else if (tmp[0][*i][0] == '<')
 			content = get_infile(content, tmp[1], i);
@@ -68,14 +69,15 @@ static t_list	*stop_fill(t_list *cmds, char **matrix, char **tmp)
 t_list	*fill_list(char **matrix, int i)
 {
 	t_list	*cmds[2];
-	char		**tmp[2];
+	char	**tmp[2];
 
 	cmds[0] = NULL;
 	tmp[1] = ft_trim_quotes(matrix);
 	while (matrix[++i])
 	{
 		cmds[1] = ft_listlast(cmds[0]);
-		if (i == 0 || (matrix[i][0] == '|' && matrix[i + 1] && matrix[i + 1][0]))
+		if (i == 0 || (matrix[i][0] == '|' && matrix[i + 1] && \
+		matrix[i + 1][0]))
 		{
 			i += matrix[i][0] == '|';
 			ft_listadd_back(&cmds[0], ft_listnew(init_data()));
@@ -86,7 +88,7 @@ t_list	*fill_list(char **matrix, int i)
 		if (i < 0)
 			return (stop_fill(cmds[0], matrix, tmp[1]));
 		if (!matrix[i])
-			break;
+			break ;
 	}
 	ft_free_matrix(&tmp[1]);
 	ft_free_matrix(&matrix);

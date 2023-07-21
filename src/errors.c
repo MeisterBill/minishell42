@@ -71,7 +71,7 @@ static int	ft_atoi2(const char *nptr, long *nbr)
 int	ft_exit(t_list *cmds, int *is_exit)
 {
 	t_data	*content;
-	long		status[2];
+	long	status[2];
 
 	content = cmds->content;
 	*is_exit = !cmds->next;
@@ -102,7 +102,7 @@ int	ft_echo(t_list *cmds)
 	int			newline;
 	int			i[2];
 	char		**matrix;
-	t_data	*cnt;
+	t_data		*cnt;
 
 	i[0] = 0;
 	i[1] = 0;
@@ -111,9 +111,9 @@ int	ft_echo(t_list *cmds)
 	matrix = cnt->full_cmd;
 	while (matrix && matrix[++i[0]])
 	{
-		if (!i[1] && !ft_strncmp(matrix[i[0]], "-n", 2) &&
-				(ft_countchar(matrix[i[0]], 'n') ==
-				 (int)(ft_strlen(matrix[i[0]]) - 1)))
+		if (!i[1] && !ft_strncmp(matrix[i[0]], "-n", 2) && \
+		(ft_countchar(matrix[i[0]], 'n') == \
+		(int)(ft_strlen(matrix[i[0]]) - 1)))
 			newline = 0;
 		else
 		{
