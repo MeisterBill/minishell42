@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: artvan-d <artvan-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/22 18:28:34 by artvan-d          #+#    #+#             */
+/*   Updated: 2023/07/22 18:43:30 by artvan-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 
 # define MINISHELL_H
@@ -69,9 +81,6 @@ char	*ft_getenv(char *var, char **envp, int n);
 char	**ft_setenv(char *var, char *value, char **envp, int n);
 /* Returns a string with current directory used as prompt for readline */
 char	*ft_getprompt(t_prompt prompt);
-
-/* Executes a custom command and saves output to string ending in \n */
-void	exec_custom(char ***output, char *full_path, char *cmd, char **envp);
 
 /* Parsing and execution of program */
 void	*checkargs_exec(char *output, t_prompt *prompt);

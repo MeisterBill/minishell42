@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prompt.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: artvan-d <artvan-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/22 18:01:05 by artvan-d          #+#    #+#             */
+/*   Updated: 2023/07/22 18:01:13 by artvan-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Includes/minishell.h"
 
 static char	*ft_gethome(t_prompt prompt)
@@ -22,27 +34,12 @@ static char	*ft_gethome(t_prompt prompt)
 	free(pwd);
 	return (result);
 }
-/*
-static char	*ft_getuser(t_prompt prompt)
-{
-	char	**user;
-	char	*tmp;
-
-	user = NULL;
-	exec_custom(&user, "/usr/bin/whoami", "whoami", prompt.envp);
-	if (!user)
-		user = ft_extend_matrix(user, "guest");
-	tmp = ft_strjoin(NULL, *user);
-	ft_free_matrix(&user);
-	return (tmp);
-}*/
 
 char	*ft_getprompt(t_prompt prompt)
 {
 	char	*tmp;
 	char	*tmp2;
 
-	//tmp = ft_getuser(prompt);
 	tmp = ft_strjoin(NULL, "@noobshell");
 	tmp2 = ft_gethome(prompt);
 	tmp = ft_strjoin(tmp, tmp2);

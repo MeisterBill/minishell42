@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: artvan-d <artvan-d@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/07/22 18:28:20 by artvan-d          #+#    #+#              #
+#    Updated: 2023/07/22 18:42:00 by artvan-d         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		=	libft.a
 
 CFLAGS		=	-Wall -Wextra -Werror -g
@@ -9,8 +21,8 @@ SRCS		=	ft_atoi.c \
 					ft_is_x.c \
 					ft_itoa.c \
 					ft_matrix.c \
-					ft_mem_x.c \
 					ft_putx_fd.c \
+					ft_mem_x.c \
 					ft_split.c \
 					ft_str_x.c \
 					ft_str_x_2.c \

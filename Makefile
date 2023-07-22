@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: artvan-d <artvan-d@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/07/22 18:28:24 by artvan-d          #+#    #+#              #
+#    Updated: 2023/07/22 18:30:18 by artvan-d         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CFLAGS = -Wall -Wextra -Werror -MD -g3
 CC = gcc
 LIBFT = libft/libft.a
@@ -6,11 +18,11 @@ NAME = minishell
 SRC_DIR = src
 OBJ_DIR = obj
 
-SRC = check_args.c builtins.c env.c errors.c			\
-	  exec_cmd.c exec.c fill_list.c				\
-	  get_cmd.c heredoc.c linked_list1.c main.c prompt.c		\
-	  redir_pipe.c redirections.c signal.c	\
-	  tokenize.c trim_quotes.c vars_path.c
+SRC = check_args.c builtins.c env.c \
+	errors.c exec.c fill_list.c \
+	get_cmd.c heredoc.c linked_list1.c main.c prompt.c		\
+	redir_pipe.c redirections.c signal.c	\
+	tokenize.c trim_quotes.c vars_path.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 DEP = $(OBJ:.o=.d)
