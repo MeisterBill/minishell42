@@ -6,37 +6,37 @@
 /*   By: artvan-d <artvan-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:44:41 by artvan-d          #+#    #+#             */
-/*   Updated: 2023/07/22 17:44:45 by artvan-d         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:58:57 by artvan-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
 
-int	builtin(t_prompt *prompt, t_list *cmds, int *is_exit, int l)
+int	builtin(t_prompt *prompt, t_list *c, int *is_exit, int l[2])
 {
-	char	**cmd;
+	char	**a;
 
-	while (cmds)
+	while (c)
 	{
-		cmd = ((t_data *)cmds->content)->full_cmd;
-		l = 0;
-		if (cmd)
-			l = ft_strlen(*cmd);
-		if (cmd && !ft_strncmp(*cmd, "exit", l) && l == 4)
-			g_exitcode = ft_exit(cmds, is_exit);
-		else if (!cmds->next && cmd && !ft_strncmp(*cmd, "cd", l) && l == 2)
+		a = ((t_data *)c->content)->full_cmd;
+		l[0] = 0;
+		if (a)
+			l[0] = ft_strlen(*a);
+		if (a && !ft_strncmp(*a, "exit", l[0]) && l[0] == 4 && l[1] == 1)
+			g_exitcode = ft_exit(c, is_exit);
+		else if (!c->next && a && !ft_strncmp(*a, "cd", l[0]) && l[0] == 2)
 			g_exitcode = ft_cd(prompt);
-		else if (!cmds->next && cmd && !ft_strncmp(*cmd, "export", l) && l == 6)
+		else if (!c->next && a && !ft_strncmp(*a, "export", l[0]) && l[0] == 6)
 			g_exitcode = ft_export(prompt);
-		else if (!cmds->next && cmd && !ft_strncmp(*cmd, "unset", l) && l == 5)
+		else if (!c->next && a && !ft_strncmp(*a, "unset", l[0]) && l[0] == 5)
 			g_exitcode = ft_unset(prompt);
 		else
 		{
 			signal(SIGINT, SIG_IGN);
 			signal(SIGQUIT, SIG_IGN);
-			exec_cmd(prompt, cmds);
+			exec_cmd(prompt, c);
 		}
-		cmds = cmds->next;
+		c = c->next;
 	}
 	return (g_exitcode);
 }

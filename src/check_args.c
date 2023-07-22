@@ -6,7 +6,7 @@
 /*   By: artvan-d <artvan-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:24:53 by artvan-d          #+#    #+#             */
-/*   Updated: 2023/07/22 18:24:56 by artvan-d         ###   ########.fr       */
+/*   Updated: 2023/07/22 19:11:34 by artvan-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,17 @@ static char	**split_all(char **matrix, t_prompt *prompt)
 
 static void	*ft_parsing(char **matrix, t_prompt *prompt)
 {
-	int	i;
+	int	l[2];
 	int	is_exit;
 
+	is_exit = 0;
 	matrix = split_all(matrix, prompt);
 	prompt->cmds = fill_list(matrix, -1);
 	if (!prompt->cmds)
 		return (prompt);
-	i = ft_listsize(prompt->cmds);
-	g_exitcode = builtin(prompt, prompt->cmds, &is_exit, 0);
-	while (i-- > 0)
+	l[1] = ft_listsize(prompt->cmds);
+	g_exitcode = builtin(prompt, prompt->cmds, &is_exit, l);
+	while (l[1]-- > 0)
 		waitpid(-1, &g_exitcode, 0);
 	if (!is_exit && g_exitcode == 13)
 		g_exitcode = 0;

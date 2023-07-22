@@ -6,7 +6,7 @@
 /*   By: artvan-d <artvan-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:28:34 by artvan-d          #+#    #+#             */
-/*   Updated: 2023/07/22 18:43:30 by artvan-d         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:54:49 by artvan-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int		get_here_doc(char *str[2], char *aux[2]);
 
 /* BUILTINS */
 /* Handles all builtin functions */
-int		builtin(t_prompt *prompt, t_list *cmds, int *is_exit, int c_len);
+int		builtin(t_prompt *prompt, t_list *cmds, int *is_exit, int l[2]);
 /* Checks if the first element in full_cmd is a builtin */
 int		is_builtin(t_data *cnt);
 /* Implementation of the exit builtin */
