@@ -1,4 +1,4 @@
-#include "../Includes/minishell.h"
+/*#include "../Includes/minishell.h"
 
 static void	update_output(char ***matrix, int fd)
 {
@@ -45,3 +45,4 @@ void	exec_custom(char ***output, char *full_path, char *cmd, char **envp)
 	update_output(output, fd[READ_END]);
 	close(fd[READ_END]);
 }
+*/
